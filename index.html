@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planeta Verde · Cuidemos nuestro ambiente</title>
+  <meta name="description" content="Información sobre cambio climático, reciclaje, biodiversidad y agua, y acciones simples para cuidar el planeta.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="header" id="inicio">
+    <nav class="nav">
+      <a href="#inicio" class="logo">🌱 Planeta Verde</a>
+      <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#clima">Clima</a></li>
+        <li><a href="#reciclaje">Reciclaje</a></li>
+        <li><a href="#biodiversidad">Biodiversidad</a></li>
+        <li><a href="#agua">Agua</a></li>
+        <li><a href="#acciones">¿Qué hago yo?</a></li>
+      </ul>
+    </nav>
+
+    <div class="hero">
+      <h1>Un solo planeta.<br><span>Una gran responsabilidad.</span></h1>
+      <p>Conocé los principales desafíos ambientales de nuestro tiempo y descubrí cómo pequeñas acciones diarias pueden generar un gran cambio.</p>
+      <a href="#clima" class="btn">Empezar a explorar</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="stats">
+      <div class="stat reveal">
+        <span class="stat-num" data-target="1.2">0</span><span class="stat-unit">°C</span>
+        <p>de calentamiento global desde la era preindustrial</p>
+      </div>
+      <div class="stat reveal">
+        <span class="stat-num" data-target="9">0</span><span class="stat-unit">%</span>
+        <p>del plástico producido en el mundo se ha reciclado</p>
+      </div>
+      <div class="stat reveal">
+        <span class="stat-num" data-target="1">0</span><span class="stat-unit">millón</span>
+        <p>de especies en riesgo de extinción</p>
+      </div>
+      <div class="stat reveal">
+        <span class="stat-num" data-target="2">0</span><span class="stat-unit">mil millones</span>
+        <p>de personas sin acceso a agua potable segura</p>
+      </div>
+    </section>
+
+    <section class="section" id="clima">
+      <div class="section-text reveal">
+        <span class="tag">Cambio climático</span>
+        <h2>El planeta se está calentando</h2>
+        <p>La quema de combustibles fósiles (carbón, petróleo y gas) libera gases de efecto invernadero que atrapan el calor en la atmósfera. Esto provoca olas de calor más intensas, sequías, inundaciones y el derretimiento de los glaciares.</p>
+        <ul class="list">
+          <li>El transporte y la energía son las mayores fuentes de emisiones.</li>
+          <li>La deforestación reduce la capacidad del planeta de absorber CO₂.</li>
+          <li>Las energías renovables (solar, eólica) son parte clave de la solución.</li>
+        </ul>
+      </div>
+      <div class="section-card card-clima reveal">
+        <div class="big-icon">🌡️</div>
+      </div>
+    </section>
+
+    <section class="section reverse" id="reciclaje">
+      <div class="section-text reveal">
+        <span class="tag">Reciclaje</span>
+        <h2>Reducir, reutilizar, reciclar</h2>
+        <p>Cada persona genera en promedio cerca de 1 kg de residuos por día. Separarlos correctamente permite que muchos materiales vuelvan a usarse en lugar de terminar en basurales.</p>
+        <div class="bins">
+          <div class="bin bin-yellow"><strong>Plásticos y latas</strong><small>Botellas, envases, latas limpias</small></div>
+          <div class="bin bin-blue"><strong>Papel y cartón</strong><small>Diarios, cajas, hojas</small></div>
+          <div class="bin bin-green"><strong>Vidrio</strong><small>Frascos y botellas</small></div>
+          <div class="bin bin-brown"><strong>Orgánicos</strong><small>Restos de comida, yerba, cáscaras</small></div>
+        </div>
+      </div>
+      <div class="section-card card-reciclaje reveal">
+        <div class="big-icon">♻️</div>
+      </div>
+    </section>
+
+    <section class="section" id="biodiversidad">
+      <div class="section-text reveal">
+        <span class="tag">Biodiversidad</span>
+        <h2>La vida en todas sus formas</h2>
+        <p>Plantas, animales, hongos y microorganismos forman ecosistemas que nos dan aire limpio, alimentos, medicinas y suelos fértiles. La pérdida de hábitats, la contaminación y las especies invasoras amenazan este equilibrio.</p>
+        <ul class="list">
+          <li>Las abejas y otros polinizadores son esenciales para gran parte de nuestros cultivos.</li>
+          <li>Los bosques albergan alrededor del 80% de las especies terrestres.</li>
+          <li>Proteger áreas naturales ayuda a conservar especies y a frenar el cambio climático.</li>
+        </ul>
+      </div>
+      <div class="section-card card-bio reveal">
+        <div class="big-icon">🦋</div>
+      </div>
+    </section>
+
+    <section class="section reverse" id="agua">
+      <div class="section-text reveal">
+        <span class="tag">Agua</span>
+        <h2>Un recurso más escaso de lo que parece</h2>
+        <p>Aunque el 70% del planeta está cubierto de agua, solo alrededor del 2,5% es agua dulce, y la mayor parte está congelada. Cuidarla es fundamental para la vida y la producción de alimentos.</p>
+        <ul class="list">
+          <li>Una canilla que gotea puede desperdiciar miles de litros al año.</li>
+          <li>Una ducha de 5 minutos usa mucha menos agua que un baño de inmersión.</li>
+          <li>No tirar aceites ni químicos por el desagüe evita contaminar ríos.</li>
+        </ul>
+      </div>
+      <div class="section-card card-agua reveal">
+        <div class="big-icon">💧</div>
+      </div>
+    </section>
+
+    <section class="actions" id="acciones">
+      <h2 class="reveal">¿Qué puedo hacer yo?</h2>
+      <p class="actions-intro reveal">Marcá las acciones que ya hacés y descubrí tu nivel de compromiso con el planeta.</p>
+      <div class="action-grid">
+        <label class="action reveal"><input type="checkbox"><span class="action-icon">🚲</span><span>Camino, uso bici o transporte público</span></label>
+        <label class="action reveal"><input type="checkbox"><span class="action-icon">💡</span><span>Apago las luces que no uso</span></label>
+        <label class="action reveal"><input type="checkbox"><span class="action-icon">🛍️</span><span>Llevo mi propia bolsa para hacer las compras</span></label>
+        <label class="action reveal"><input type="checkbox"><span class="action-icon">♻️</span><span>Separo los residuos en casa</span></label>
+        <label class="action reveal"><input type="checkbox"><span class="action-icon">🚿</span><span>Me ducho en menos de 5 minutos</span></label>
+        <label class="action reveal"><input type="checkbox"><span class="action-icon">🌳</span><span>Planté un árbol o cuido plantas</span></label>
+        <label class="action reveal"><input type="checkbox"><span class="action-icon">🥤</span><span>Evito plásticos de un solo uso</span></label>
+        <label class="action reveal"><input type="checkbox"><span class="action-icon">🥕</span><span>Compro productos locales y de estación</span></label>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+        <p class="progress-text" id="progressText">Marcá al menos una acción para empezar 🌱</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>🌍 <strong>Planeta Verde</strong> — Cuidar el ambiente es tarea de todos.</p>
+    <p class="small">Datos aproximados basados en informes de la ONU, IPCC e IPBES.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
