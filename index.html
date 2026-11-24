@@ -3,34 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Planeta Verde · Cuidemos nuestro ambiente</title>
-  <meta name="description" content="Información sobre cambio climático, reciclaje, biodiversidad y agua, y acciones simples para cuidar el planeta.">
+  <title>Planeta Verde</title>
+  <meta name="description" content="Información sobre cambio climático, reciclaje, biodiversidad y agua, con calculadora de huella de carbono, juegos y desafíos para cuidar el planeta.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script>
+    // Aplicar el tema guardado antes de pintar la página
+    try {
+      const t = localStorage.getItem('pv-theme');
+      if (t) document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
 </head>
 <body>
 
   <header class="header" id="inicio">
     <nav class="nav">
       <a href="#inicio" class="logo">🌱 Planeta Verde</a>
-      <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav-links">
-        <li><a href="#clima">Clima</a></li>
-        <li><a href="#reciclaje">Reciclaje</a></li>
-        <li><a href="#biodiversidad">Biodiversidad</a></li>
-        <li><a href="#agua">Agua</a></li>
-        <li><a href="#acciones">¿Qué hago yo?</a></li>
-      </ul>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="#clima">Aprender</a></li>
+          <li><a href="#calculadora">Calculadora</a></li>
+          <li><a href="#juego">Juego</a></li>
+          <li><a href="#quiz">Quiz</a></li>
+          <li><a href="#desafio">Desafío</a></li>
+          <li><a href="#calendario">Calendario</a></li>
+        </ul>
+        <button class="theme-toggle" id="themeToggle" aria-label="Cambiar modo claro u oscuro">🌙</button>
+        <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </nav>
 
     <div class="hero">
       <h1>Un solo planeta.<br><span>Una gran responsabilidad.</span></h1>
-      <p>Conocé los principales desafíos ambientales de nuestro tiempo y descubrí cómo pequeñas acciones diarias pueden generar un gran cambio.</p>
-      <a href="#clima" class="btn">Empezar a explorar</a>
+      <p>Conocé los principales desafíos ambientales de nuestro tiempo, medí tu impacto y descubrí cómo pequeñas acciones diarias pueden generar un gran cambio.</p>
+      <div class="hero-buttons">
+        <a href="#clima" class="btn">Empezar a explorar</a>
+        <a href="#calculadora" class="btn btn-ghost">Calcular mi huella</a>
+      </div>
     </div>
   </header>
 
@@ -54,6 +68,17 @@
       </div>
     </section>
 
+    <!-- ¿Sabías que...? -->
+    <section class="fact reveal">
+      <div class="fact-icon">💡</div>
+      <div class="fact-body">
+        <span class="fact-label">¿Sabías que…?</span>
+        <p id="factText">Reciclar aluminio ahorra cerca del 95% de la energía necesaria para fabricarlo desde cero.</p>
+      </div>
+      <button class="btn btn-small" id="factBtn">Otro dato</button>
+    </section>
+
+    <!-- APRENDER -->
     <section class="section" id="clima">
       <div class="section-text reveal">
         <span class="tag">Cambio climático</span>
@@ -68,6 +93,51 @@
       <div class="section-card card-clima reveal">
         <div class="big-icon">🌡️</div>
       </div>
+    </section>
+
+    <!-- Antes y después -->
+    <section class="compare-section">
+      <div class="compare-head reveal">
+        <span class="tag">Antes y ahora</span>
+        <h2>Los glaciares retroceden</h2>
+        <p>Deslizá para comparar. Muchos glaciares del mundo perdieron gran parte de su hielo en las últimas décadas y dejaron lagos y roca al descubierto.</p>
+      </div>
+      <div class="compare reveal" id="compare">
+        <svg class="compare-img" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice" aria-label="Ilustración de un glaciar pequeño en la actualidad">
+          <defs>
+            <linearGradient id="skyNow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6c48b"/><stop offset="1" stop-color="#fbe3c2"/></linearGradient>
+          </defs>
+          <rect width="800" height="400" fill="url(#skyNow)"/>
+          <circle cx="650" cy="80" r="40" fill="#ffb347"/>
+          <polygon points="0,400 0,220 140,90 260,200 400,60 540,190 660,100 800,230 800,400" fill="#8a7a6a"/>
+          <polygon points="140,90 165,120 120,125" fill="#fff"/>
+          <polygon points="400,60 430,100 385,105 372,88" fill="#fff"/>
+          <polygon points="660,100 685,128 640,132" fill="#fff"/>
+          <polygon points="0,400 0,300 200,250 400,270 600,250 800,300 800,400" fill="#a08c74"/>
+          <ellipse cx="400" cy="340" rx="230" ry="40" fill="#4fb3d9"/>
+          <ellipse cx="400" cy="335" rx="170" ry="22" fill="#7cd0ec" opacity=".6"/>
+          <text x="770" y="385" text-anchor="end" class="svg-label">AHORA</text>
+        </svg>
+        <div class="compare-before" id="compareBefore">
+          <svg class="compare-img" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice" aria-label="Ilustración de un glaciar grande en el pasado">
+            <defs>
+              <linearGradient id="skyThen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fd8f5"/><stop offset="1" stop-color="#e3f5ff"/></linearGradient>
+            </defs>
+            <rect width="800" height="400" fill="url(#skyThen)"/>
+            <polygon points="0,400 0,220 140,90 260,200 400,60 540,190 660,100 800,230 800,400" fill="#7d8b99"/>
+            <polygon points="140,90 200,160 260,200 170,220 80,170" fill="#fff"/>
+            <polygon points="400,60 480,140 540,190 420,210 320,150" fill="#fff"/>
+            <polygon points="660,100 740,180 800,230 690,220 600,170" fill="#fff"/>
+            <path d="M0,400 L0,260 Q200,190 400,200 Q600,190 800,260 L800,400 Z" fill="#f2fbff"/>
+            <path d="M0,400 L0,310 Q200,260 400,270 Q600,260 800,310 L800,400 Z" fill="#d6effa"/>
+            <path d="M120,330 L260,300 M480,300 L640,330 M330,360 L470,350" stroke="#a9d8ee" stroke-width="4"/>
+            <text x="30" y="385" class="svg-label">ANTES</text>
+          </svg>
+        </div>
+        <div class="compare-line" id="compareLine"><span>⇆</span></div>
+        <input type="range" min="0" max="100" value="50" class="compare-range" id="compareRange" aria-label="Deslizar para comparar antes y ahora">
+      </div>
+      <p class="note">Ilustración con fines educativos.</p>
     </section>
 
     <section class="section reverse" id="reciclaje">
@@ -119,6 +189,60 @@
       </div>
     </section>
 
+    <!-- CALCULADORA -->
+    <section class="tool" id="calculadora">
+      <div class="tool-head reveal">
+        <span class="tag">Calculadora</span>
+        <h2>¿Cuál es tu huella de carbono?</h2>
+        <p>Respondé 7 preguntas y obtené una estimación de cuánto CO₂ generás por año.</p>
+      </div>
+      <form class="calc panel reveal" id="calcForm"></form>
+      <div class="calc-result panel" id="calcResult" hidden></div>
+    </section>
+
+    <!-- JUEGO -->
+    <section class="tool tool-alt" id="juego">
+      <div class="tool-head reveal">
+        <span class="tag">Juego</span>
+        <h2>¿En qué contenedor va?</h2>
+        <p>Tenés 60 segundos. Tocá el contenedor correcto para cada residuo: +10 si acertás, −5 si te equivocás.</p>
+      </div>
+      <div class="game reveal" id="game">
+        <div class="game-bar">
+          <span>⏱️ <strong id="gameTime">60</strong> s</span>
+          <span>⭐ <strong id="gameScore">0</strong> pts</span>
+          <span>🏆 Récord: <strong id="gameBest">0</strong></span>
+        </div>
+        <div class="game-stage">
+          <div class="game-item" id="gameItem">
+            <span class="game-emoji">♻️</span>
+            <span class="game-name">¿Listo para jugar?</span>
+          </div>
+          <p class="game-feedback" id="gameFeedback" aria-live="polite"></p>
+          <button class="btn" id="gameStart">Empezar</button>
+        </div>
+        <div class="game-bins" id="gameBins">
+          <button class="gbin bin-yellow" data-bin="amarillo" disabled>🟡<span>Plásticos y latas</span></button>
+          <button class="gbin bin-blue" data-bin="azul" disabled>🔵<span>Papel y cartón</span></button>
+          <button class="gbin bin-green" data-bin="verde" disabled>🟢<span>Vidrio</span></button>
+          <button class="gbin bin-brown" data-bin="marron" disabled>🟤<span>Orgánicos</span></button>
+          <button class="gbin bin-red" data-bin="especial" disabled>🔴<span>Punto especial</span></button>
+        </div>
+        <p class="note">Los colores de los contenedores pueden variar según tu ciudad.</p>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="tool" id="quiz">
+      <div class="tool-head reveal">
+        <span class="tag">Quiz</span>
+        <h2>¿Cuánto sabés del ambiente?</h2>
+        <p>10 preguntas. Después de cada una vas a ver la explicación.</p>
+      </div>
+      <div class="quiz panel reveal" id="quizBox"></div>
+    </section>
+
+    <!-- CHECKLIST -->
     <section class="actions" id="acciones">
       <h2 class="reveal">¿Qué puedo hacer yo?</h2>
       <p class="actions-intro reveal">Marcá las acciones que ya hacés y descubrí tu nivel de compromiso con el planeta.</p>
@@ -137,11 +261,57 @@
         <p class="progress-text" id="progressText">Marcá al menos una acción para empezar 🌱</p>
       </div>
     </section>
+
+    <!-- DESAFÍO 30 DÍAS -->
+    <section class="tool" id="desafio">
+      <div class="tool-head reveal">
+        <span class="tag">Desafío</span>
+        <h2>30 días por el planeta</h2>
+        <p>Una acción por día. Tocá cada día cuando lo cumplas: tu avance se guarda en este navegador.</p>
+      </div>
+      <div class="challenge-top reveal">
+        <div class="progress progress-light"><div class="progress-bar" id="chBar"></div></div>
+        <p id="chText" class="ch-text">0 de 30 días completados</p>
+      </div>
+      <div class="challenge-grid" id="chGrid"></div>
+      <div class="center"><button class="btn btn-outline btn-small" id="chReset">Reiniciar desafío</button></div>
+    </section>
+
+    <!-- CALENDARIO -->
+    <section class="tool tool-alt" id="calendario">
+      <div class="tool-head reveal">
+        <span class="tag">Calendario</span>
+        <h2>Fechas ambientales</h2>
+        <p>Días internacionales para recordar, participar y difundir.</p>
+      </div>
+      <div class="next-date reveal" id="nextDate"></div>
+      <div class="dates" id="dates"></div>
+    </section>
+
+    <!-- PUNTOS VERDES -->
+    <section class="tool" id="puntos">
+      <div class="tool-head reveal">
+        <span class="tag">Puntos verdes</span>
+        <h2>¿Dónde llevo cada cosa?</h2>
+        <p>Algunos residuos no van a la basura común ni a los contenedores de la calle. Así se descartan correctamente:</p>
+      </div>
+      <div class="points">
+        <div class="point reveal"><span class="point-icon">🔋</span><h3>Pilas y baterías</h3><p>Guardalas en una botella cerrada y llevalas a un punto de recolección de pilas (muchos supermercados y municipios tienen).</p></div>
+        <div class="point reveal"><span class="point-icon">📱</span><h3>Electrónicos</h3><p>Celulares, cargadores y computadoras viejas van a puntos de recolección de RAEE o campañas de reciclaje electrónico.</p></div>
+        <div class="point reveal"><span class="point-icon">🛢️</span><h3>Aceite de cocina</h3><p>Dejalo enfriar, guardalo en una botella de plástico cerrada y llevalo a un punto de acopio. Nunca por la pileta.</p></div>
+        <div class="point reveal"><span class="point-icon">💊</span><h3>Medicamentos vencidos</h3><p>Muchas farmacias reciben remedios vencidos para descartarlos de forma segura.</p></div>
+        <div class="point reveal"><span class="point-icon">👕</span><h3>Ropa y textiles</h3><p>Si está en buen estado, donala. Si no, buscá contenedores de reciclaje textil.</p></div>
+        <div class="point reveal"><span class="point-icon">💡</span><h3>Lámparas</h3><p>Las lámparas de bajo consumo contienen mercurio: van a puntos limpios o puntos verdes especiales.</p></div>
+      </div>
+      <div class="center reveal">
+        <a class="btn" href="https://www.google.com/maps/search/punto+verde+reciclaje" target="_blank" rel="noopener">📍 Buscar puntos verdes cerca de mí</a>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
     <p>🌍 <strong>Planeta Verde</strong> — Cuidar el ambiente es tarea de todos.</p>
-    <p class="small">Datos aproximados basados en informes de la ONU, IPCC e IPBES.</p>
+    <p class="small">Datos aproximados basados en informes de la ONU, IPCC, IPBES y FAO. La calculadora da una estimación orientativa.</p>
   </footer>
 
   <script src="script.js"></script>
