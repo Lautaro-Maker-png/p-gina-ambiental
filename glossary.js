@@ -89,18 +89,32 @@
 
   cats.innerHTML = CATS.map((c) => `<button class="gl-cat ${c === cat ? 'active' : ''}" data-c="${c}">${CAT_ICON[c] || '📚'} ${c}</button>`).join('');
 
+  const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+  let community = []; // términos aprobados por el dueño (llegan desde aportes.js)
+
+  // aportes.js llama a esta función cuando cambian los términos aprobados
+  window.PVGlossary = {
+    setCommunity(list) {
+      community = (list || []).filter((x) => CAT_ICON[x.cat]).map((x) => [x.term, x.cat, x.def, x.alias || '']);
+      render();
+    },
+  };
+
   function render() {
     const q = norm(search.value.trim());
-    const items = TERMS.filter(([t, c, d]) => (cat === 'Todas' || c === cat) && (!q || norm(t).includes(q) || norm(d).includes(q)));
-    count.textContent = `${items.length} término${items.length === 1 ? '' : 's'} · ${opened.size} leído${opened.size === 1 ? '' : 's'}`;
+    const all = TERMS.map((x) => [...x, null]).concat(community)
+      .sort((a, b) => norm(a[0]).localeCompare(norm(b[0]), 'es'));
+    const items = all.filter(([t, c, d]) => (cat === 'Todas' || c === cat) && (!q || norm(t).includes(q) || norm(d).includes(q)));
+    count.textContent = `${items.length} término${items.length === 1 ? '' : 's'}${community.length ? ` (${community.length} de la comunidad)` : ''} · ${opened.size} leído${opened.size === 1 ? '' : 's'}`;
     let letter = '';
-    list.innerHTML = items.length ? items.map(([t, c, d]) => {
-      const l = norm(t)[0].toUpperCase();
-      const head = l !== letter ? `<div class="gl-letter">${(letter = l)}</div>` : '';
-      return `${head}<details class="gl-term ${opened.has(t) ? 'read' : ''}" data-t="${t}">
-        <summary><span>${t}</span><small>${CAT_ICON[c]} ${c}</small></summary>
-        <p>${d}</p></details>`;
-    }).join('') : '<p class="gl-empty">No encontramos ese término. Probá con otra palabra 🔍</p>';
+    list.innerHTML = items.length ? items.map(([t, c, d, alias]) => {
+      const l = (norm(t)[0] || '#').toUpperCase();
+      const head = l !== letter ? `<div class="gl-letter">${esc(letter = l)}</div>` : '';
+      const fromCommunity = alias !== null;
+      return `${head}<details class="gl-term ${opened.has(t) ? 'read' : ''} ${fromCommunity ? 'community' : ''}" data-t="${esc(t)}">
+        <summary><span>${esc(t)}</span><small>${fromCommunity ? '✨ ' : ''}${CAT_ICON[c]} ${esc(c)}</small></summary>
+        <p>${esc(d)}</p>${fromCommunity ? `<p class="gl-by">✨ Aporte de la comunidad${alias ? ` · ${esc(alias)}` : ''}</p>` : ''}</details>`;
+    }).join('') : '<p class="gl-empty">No encontramos ese término. ¿Querés sugerirlo? Usá el formulario de abajo 👇</p>';
   }
 
   search.addEventListener('input', render);

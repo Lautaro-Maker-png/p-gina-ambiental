@@ -462,9 +462,17 @@ watchReveal();
     ['Gestión y derecho', 'Difícil', '¿Qué principio dice que la falta de certeza científica no es excusa para no actuar ante un peligro de daño grave?', ['Principio de congruencia', 'Principio precautorio', 'Principio de progresividad', 'Principio de subsidiariedad'], 1, 'El principio precautorio está en el artículo 4 de la Ley General del Ambiente.'],
     ['Gestión y derecho', 'Difícil', '¿Qué norma internacional establece los requisitos de un sistema de gestión ambiental?', ['ISO 9001', 'ISO 14001', 'ISO 27001', 'ISO 45001'], 1, 'La ISO 14001 ayuda a las organizaciones a controlar sus impactos ambientales y mejorar de forma continua.'],
     ['Gestión y derecho', 'Difícil', 'Según la Ley 25.831, ¿en qué plazo máximo debe responder un organismo un pedido de información ambiental?', ['5 días hábiles', '30 días hábiles', '6 meses', 'No tiene plazo'], 1, 'El plazo máximo es de 30 días hábiles, y no hace falta explicar para qué se pide la información.'],
+    ['Caleta Olivia', 'Fácil', '¿Sobre qué golfo está Caleta Olivia?', ['Golfo Nuevo', 'Golfo San Matías', 'Golfo San Jorge', 'Bahía Blanca'], 2, 'Caleta Olivia está en la costa sur del Golfo San Jorge, en el norte de Santa Cruz.'],
+    ['Caleta Olivia', 'Fácil', '¿Qué animal forma una colonia en la reserva costera al sur de la ciudad?', ['Pingüino emperador', 'Lobo marino de un pelo', 'Elefante marino', 'Ballena franca'], 1, 'La reserva tiene una colonia de lobos marinos de un pelo con cientos de ejemplares. Es área protegida: no se baja a la playa.'],
+    ['Caleta Olivia', 'Fácil', '¿A quién homenajea el monumento conocido como “Gorosito”?', ['Al fundador de la ciudad', 'Al obrero petrolero', 'A un pescador', 'A un capitán de barco'], 1, 'El Gorosito, de 13 metros, se levantó en 1969 en homenaje al trabajador petrolero.'],
+    ['Caleta Olivia', 'Medio', '¿En qué año se fundó Caleta Olivia?', ['1880', '1901', '1944', '1969'], 1, 'Se fundó el 20 de noviembre de 1901.'],
+    ['Caleta Olivia', 'Medio', '¿Cómo se llama el acueducto que lleva agua a la ciudad desde el Lago Musters?', ['Acueducto Jorge Carstens', 'Acueducto del Río Negro', 'Acueducto Patagónico Sur', 'Acueducto Cañadón Seco'], 0, 'Sus roturas provocaron la crisis de agua de 2014, conocida como “Días de Sed”.'],
+    ['Caleta Olivia', 'Medio', '¿Qué tecnología usa la planta que potabiliza agua de mar en Caleta Olivia?', ['Ósmosis inversa', 'Cloración simple', 'Filtros de arena', 'Hervido'], 0, 'La ósmosis inversa hace pasar el agua por membranas que retienen la sal. Genera salmuera, un residuo que hay que gestionar.'],
+    ['Caleta Olivia', 'Medio', '¿Qué aves usan el humedal urbano de Caleta Olivia?', ['Pingüinos y albatros', 'Flamencos y aves playeras migratorias', 'Cóndores y águilas', 'Loros y tucanes'], 1, 'El humedal es usado por flamencos, chorlitos, cisnes, cauquenes y falaropos, incluidas aves migratorias del hemisferio norte.'],
+    ['Caleta Olivia', 'Difícil', '¿Qué parque eólico funciona junto a Cañadón Seco, a unos 25 km de la ciudad?', ['Parque Eólico Rawson', 'Parque Eólico Cañadón León', 'Parque Eólico Arauco', 'Parque Eólico Madryn'], 1, 'El Parque Eólico Cañadón León (YPF Luz) se inauguró en 2022 y aporta unos 123 MW de energía renovable.'],
   ].map(([cat, lvl, q, opts, a, exp]) => ({ cat, lvl, q, opts, a, exp }));
 
-  const CATS = ['Todos', 'Clima', 'Residuos', 'Agua', 'Biodiversidad', 'Gestión y derecho'];
+  const CATS = ['Todos', 'Clima', 'Residuos', 'Agua', 'Biodiversidad', 'Gestión y derecho', 'Caleta Olivia'];
   const LVLS = ['Todos', 'Fácil', 'Medio', 'Difícil'];
   let sel = { cat: 'Todos', lvl: 'Todos' };
   let quiz;
@@ -681,6 +689,7 @@ watchReveal();
     [9, 16, '☀️', 'Día Internacional de la Preservación de la Capa de Ozono'],
     [10, 24, '🌡️', 'Día Internacional contra el Cambio Climático'],
     [12, 5, '🪴', 'Día Mundial del Suelo'],
+    [11, 20, '🌊', 'Aniversario de Caleta Olivia (1901)'],
     [12, 11, '🏔️', 'Día Internacional de las Montañas'],
   ];
   const MONTHS = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];

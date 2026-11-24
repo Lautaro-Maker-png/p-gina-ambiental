@@ -214,6 +214,36 @@
       verdictExp: 'La hidroelectricidad es renovable, pero las grandes represas tienen impactos irreversibles. Con los estudios de sedimentos y caudal incompletos, no se pueden conocer los efectos aguas abajo. Lo adecuado es pedir más estudios antes de decidir, además de un proceso participativo con las familias afectadas.',
       learn: ['Caudal ecológico', 'Patrimonio arqueológico', 'Impactos irreversibles'],
     },
+    {
+      id: 'desalinizadora',
+      icon: '🚰',
+      title: 'Planta desalinizadora en la costa',
+      place: 'Ciudad costera patagónica con escasez de agua',
+      desc: 'Para resolver la falta de agua potable, se propone ampliar una planta de ósmosis inversa que toma agua de mar y la potabiliza. Por cada litro de agua dulce se genera más de un litro de salmuera, que se devolvería al mar. Cerca hay una colonia de lobos marinos.',
+      data: ['Producción prevista: 10.000 m³ de agua potable por día', 'Salmuera: el doble de salada que el agua de mar', 'Energía: muy alto consumo eléctrico'],
+      impacts: [
+        ['La salmuera descargada puede dañar a los organismos del fondo marino cerca de la descarga', true],
+        ['Alto consumo de energía y emisiones si la electricidad es de origen fósil', true],
+        ['La toma de agua puede succionar larvas, peces y otros organismos', true],
+        ['Impacto positivo: mejora el acceso al agua potable de la población', true],
+        ['Aumento de las lluvias en la ciudad', false],
+        ['Derretimiento de los glaciares de la cordillera', false],
+        ['Desaparición del petróleo del golfo', false],
+      ],
+      measures: [
+        ['Usar difusores para que la salmuera se diluya lejos de la costa, según un estudio de dispersión', true],
+        ['Monitorear la salinidad y la fauna del fondo marino cerca de la descarga', true],
+        ['Abastecer la planta con energía renovable, por ejemplo eólica', true],
+        ['Diseñar la toma con rejillas y baja velocidad para proteger a la fauna', true],
+        ['Descargar la salmuera directamente en la playa', false],
+        ['Ubicar la descarga junto a la colonia de lobos marinos', false],
+        ['No controlar la calidad del agua producida para ahorrar costos', false],
+      ],
+      verdicts: { aprobar: 5, condiciones: 20, estudios: 12, rechazar: 0 },
+      best: 'condiciones',
+      verdictExp: 'Garantizar el agua potable es prioritario, y la desalinización puede ser parte de la solución. Lo adecuado es aprobarla con condiciones: dispersión controlada de la salmuera lejos de áreas sensibles, monitoreo del ambiente marino, toma de agua que proteja la fauna y energía renovable. Además, conviene acompañarla con la reparación de las redes y el uso responsable del agua.',
+      learn: ['Gestión de la salmuera', 'Agua y energía', 'Impactos positivos y negativos'],
+    },
   ];
 
   const VERDICTS = [
