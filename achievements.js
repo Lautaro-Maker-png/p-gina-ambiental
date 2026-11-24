@@ -7,8 +7,8 @@
     { id: 'explorer', icon: '🧭', name: 'Explorador/a', desc: 'Recorré todas las secciones de la página', pts: 20 },
     { id: 'curious', icon: '💡', name: 'Curioso/a', desc: 'Leé 5 datos de “¿Sabías que…?”', pts: 10 },
     { id: 'calc', icon: '🌍', name: 'Primer paso', desc: 'Calculá tu huella de carbono', pts: 20 },
-    { id: 'quiz7', icon: '🧠', name: 'Mente verde', desc: 'Sacá 7 o más en el quiz', pts: 30 },
-    { id: 'quiz10', icon: '🏆', name: 'Experto/a ambiental', desc: 'Sacá 10 de 10 en el quiz', pts: 50 },
+    { id: 'quiz7', icon: '🧠', name: 'Mente verde', desc: 'Acertá el 70% o más en un quiz', pts: 30 },
+    { id: 'quiz10', icon: '🏆', name: 'Experto/a ambiental', desc: 'Sacá 10 de 10 en un quiz', pts: 50 },
     { id: 'game150', icon: '♻️', name: 'Reciclador/a', desc: 'Hacé 150 puntos en el juego de reciclaje', pts: 30 },
     { id: 'game300', icon: '🚛', name: 'Maestro/a del reciclaje', desc: 'Hacé 300 puntos en el juego de reciclaje', pts: 50 },
     { id: 'eia1', icon: '🔍', name: 'Evaluador/a', desc: 'Completá una Evaluación de Impacto Ambiental', pts: 30 },
@@ -22,6 +22,9 @@
     { id: 'glossary', icon: '📖', name: 'Vocabulario verde', desc: 'Abrí 10 términos del glosario', pts: 20 },
     { id: 'reader', icon: '📰', name: 'Lector/a', desc: 'Leé un artículo del blog', pts: 10 },
     { id: 'ranking', icon: '🥇', name: 'En el podio', desc: 'Sumate al ranking de la comunidad', pts: 20 },
+    { id: 'chem', icon: '🧪', name: 'Laboratorio', desc: 'Probá el semáforo del aire y del agua', pts: 20 },
+    { id: 'waste', icon: '🗑️', name: 'Menos basura', desc: 'Calculá cuántos residuos generás', pts: 20 },
+    { id: 'compost', icon: '🪱', name: 'Compostero/a', desc: 'Acertá 8 en “¿Va al compost?”', pts: 20 },
     { id: 'rights', icon: '📜', name: 'Conozco mis derechos', desc: 'Leé las 10 leyes ambientales', pts: 40 },
     { id: 'habits', icon: '✅', name: 'Hábitos verdes', desc: 'Marcá 6 acciones en “¿Qué puedo hacer yo?”', pts: 20 },
     { id: 'week', icon: '📅', name: 'Semana verde', desc: 'Completá 7 días del desafío', pts: 30 },
@@ -34,7 +37,7 @@
     { min: 60, icon: '🌱', name: 'Brote' },
     { min: 200, icon: '🌿', name: 'Planta' },
     { min: 400, icon: '🌳', name: 'Árbol' },
-    { min: 620, icon: '🌲', name: 'Bosque' },
+    { min: 650, icon: '🌲', name: 'Bosque' },
   ];
 
   const load = (k, f) => {
@@ -56,6 +59,7 @@
   const toasts = document.getElementById('toasts');
 
   function toast(html) {
+    if (!toasts) return;
     const el = document.createElement('div');
     el.className = 'toast';
     el.innerHTML = html;
@@ -90,7 +94,8 @@
     const count = BADGES.filter((b) => unlocked[b.id]).length;
     const pct = next ? ((p - cur.min) / (next.min - cur.min)) * 100 : 100;
 
-    document.getElementById('fabPts').textContent = p;
+    const fabPts = document.getElementById('fabPts');
+    if (fabPts) fabPts.textContent = p;
 
     const levelBox = document.getElementById('levelBox');
     if (levelBox) {
@@ -117,7 +122,7 @@
   }
 
   // ---------- Explorador: visitar todas las secciones ----------
-  const SECTIONS = ['clima', 'simulador', 'reciclaje', 'biodiversidad', 'ecorregiones', 'cadena', 'agua', 'hidrica', 'calculadora', 'auditoria', 'juego', 'quiz', 'eia', 'derechos', 'glosario', 'desafio', 'calendario', 'puntos', 'blog'];
+  const SECTIONS = ['clima', 'simulador', 'reciclaje', 'biodiversidad', 'ecorregiones', 'cadena', 'agua', 'calidad', 'hidrica', 'calculadora', 'residuos', 'auditoria', 'juego', 'quiz', 'eia', 'derechos', 'glosario', 'desafio', 'calendario', 'puntos', 'blog', 'docentes'];
   let visited = new Set(load('pv-visited', []));
 
   const secObserver = new IntersectionObserver((entries) => {
@@ -128,7 +133,7 @@
       secObserver.unobserve(e.target);
       if (SECTIONS.every((s) => visited.has(s))) unlock('explorer');
     });
-  }, { threshold: 0.25 });
+  }, { threshold: 0, rootMargin: '-45% 0px -45% 0px' }); // cuenta cuando la sección pasa por el centro de la pantalla
 
   SECTIONS.forEach((id) => {
     const el = document.getElementById(id);
@@ -263,6 +268,7 @@
     m.querySelector('.modal-img').src = url;
     m.hidden = false;
     document.body.style.overflow = 'hidden';
+    m.querySelector('.modal-close').focus({ preventScroll: true });
 
     const shareBtn = m.querySelector('[data-act="share"]');
     shareBtn.hidden = !navigator.share;
@@ -297,7 +303,8 @@
     };
   }
 
-  document.getElementById('shareBadges').addEventListener('click', () => {
+  const shareBadges = document.getElementById('shareBadges');
+  if (shareBadges) shareBadges.addEventListener('click', () => {
     const p = points();
     const { cur } = levelFor(p);
     const count = BADGES.filter((b) => unlocked[b.id]).length;

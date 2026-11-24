@@ -4,6 +4,7 @@
 // =====================================================
 (function () {
   const box = document.getElementById('rankBox');
+  if (!box) return;
   const listEl = document.getElementById('rankList');
   const statusEl = document.getElementById('rankStatus');
   const form = document.getElementById('rankForm');

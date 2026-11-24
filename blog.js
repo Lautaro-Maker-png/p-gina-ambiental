@@ -24,7 +24,7 @@
         <p>Las cajas de pizza muy engrasadas o las servilletas usadas no sirven para reciclar papel. En cambio, pueden ir al <strong>compost</strong> si no tienen restos de comida de origen animal en exceso.</p>
         <h4>5. “Reciclar es la solución”</h4>
         <p>Reciclar es importante, pero es el último paso. El orden correcto es: <strong>reducir, reutilizar y recién después reciclar</strong>. El mejor residuo es el que no se genera.</p>
-        <p class="post-tip">💡 Probá el <a href="#juego">juego de reciclaje</a> para practicar dónde va cada residuo.</p>`,
+        <p class="post-tip">💡 Probá el <a href="juegos.html#juego">juego de reciclaje</a> para practicar dónde va cada residuo.</p>`,
     },
     {
       id: 'humedales',
@@ -47,7 +47,7 @@
         <p>Los rellenos para urbanizaciones, los endicamientos para agricultura y ganadería, las quemas y la contaminación. Cuando un humedal se rellena, el agua de las lluvias tiene que ir a otro lugar, y muchas veces termina inundando barrios vecinos.</p>
         <h4>¿Qué podemos hacer?</h4>
         <p>Informarnos, participar de las audiencias públicas cuando se evalúan proyectos sobre humedales, apoyar las áreas protegidas y difundir su importancia. El 2 de febrero es el Día Mundial de los Humedales.</p>
-        <p class="post-tip">💡 Probá evaluar el caso del <a href="#eia">barrio cerrado en un humedal</a>.</p>`,
+        <p class="post-tip">💡 Probá evaluar el caso del <a href="juegos.html#eia">barrio cerrado en un humedal</a>.</p>`,
     },
     {
       id: 'gestion-ambiental',
@@ -76,6 +76,7 @@
   ];
 
   const grid = document.getElementById('blogGrid');
+  if (!grid) return;
   grid.innerHTML = POSTS.map((p) => `
     <article class="post-card" style="--pc:${p.color}">
       <div class="post-cover"><span>${p.icon}</span></div>
@@ -96,7 +97,7 @@
       reader.innerHTML = '<div class="modal-box post-reader" role="dialog" aria-modal="true"><button class="modal-close" aria-label="Cerrar">✕</button><div class="post-content"></div></div>';
       document.body.appendChild(reader);
       reader.addEventListener('click', (e) => {
-        if (e.target === reader || e.target.closest('.modal-close') || e.target.closest('.post-content a')) close();
+        if (e.target === reader || e.target.closest('.modal-close')) close();
       });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !reader.hidden) close(); });
     }
@@ -107,6 +108,7 @@
       ${p.body}`;
     reader.hidden = false;
     reader.querySelector('.modal-box').scrollTop = 0;
+    reader.querySelector('.modal-close').focus({ preventScroll: true });
     document.body.style.overflow = 'hidden';
     if (window.PV) PV.unlock('reader');
   }

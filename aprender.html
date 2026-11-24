@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aprender · Planeta Verde</title>
+  <meta name="description" content="Cambio climático, reciclaje, biodiversidad, ecorregiones de Argentina, red alimentaria, agua y calidad del aire, explicados de forma interactiva.">
+  <meta name="theme-color" content="#1b4332">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:title" content="Aprender · Planeta Verde">
+  <meta property="og:description" content="Calculá tu huella, evaluá proyectos como un profesional ambiental, explorá las ecorregiones de Argentina y sumá insignias cuidando el planeta 🌱">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Planeta Verde · Cuidemos nuestro ambiente">
+  <meta name="twitter:description" content="Calculá tu huella, evaluá proyectos ambientales, explorá ecorregiones y sumá insignias 🌱">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B1%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Aplicar el tema guardado antes de pintar la página
+    document.documentElement.classList.add('js');
+    try {
+      let t = localStorage.getItem('pv-theme');
+      try { t = JSON.parse(t); } catch (e) {}
+      if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
+</head>
+<body>
+
+  <header class="header header-small">
+    <div class="page-hero">
+      <span class="page-emoji" aria-hidden="true">📚</span>
+      <h1>Aprender</h1>
+      <p>Los grandes temas ambientales explicados con simuladores, mapas y ejemplos de Argentina.</p>
+      <nav class="page-toc" aria-label="En esta página"><a href="#clima">🌡️ Clima</a><a href="#simulador">📈 Simulador</a><a href="#reciclaje">♻️ Reciclaje</a><a href="#biodiversidad">🦋 Biodiversidad</a><a href="#ecorregiones">🗺️ Ecorregiones</a><a href="#cadena">🕸️ Red alimentaria</a><a href="#agua">💧 Agua</a><a href="#calidad">🧪 Calidad del aire y del agua</a></nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- APRENDER -->
+    <section class="section" id="clima">
+      <div class="section-text reveal">
+        <span class="tag">Cambio climático</span>
+        <h2>El planeta se está calentando</h2>
+        <p>La quema de combustibles fósiles (carbón, petróleo y gas) libera gases de efecto invernadero que atrapan el calor en la atmósfera. Esto provoca olas de calor más intensas, sequías, inundaciones y el derretimiento de los glaciares.</p>
+        <ul class="list">
+          <li>El transporte y la energía son las mayores fuentes de emisiones.</li>
+          <li>La deforestación reduce la capacidad del planeta de absorber CO₂.</li>
+          <li>Las energías renovables (solar, eólica) son parte clave de la solución.</li>
+        </ul>
+      </div>
+      <div class="section-card card-clima reveal">
+        <div class="big-icon">🌡️</div>
+      </div>
+    </section>
+
+    <!-- Antes y después -->
+    <section class="compare-section" id="glaciar">
+      <div class="compare-head reveal">
+        <span class="tag">Antes y ahora</span>
+        <h2>Los glaciares retroceden</h2>
+        <p>Deslizá para comparar. Muchos glaciares del mundo perdieron gran parte de su hielo en las últimas décadas y dejaron lagos y roca al descubierto.</p>
+      </div>
+      <div class="compare reveal" id="compare">
+        <svg class="compare-img" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice" aria-label="Ilustración de un glaciar pequeño en la actualidad">
+          <defs>
+            <linearGradient id="skyNow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6c48b"/><stop offset="1" stop-color="#fbe3c2"/></linearGradient>
+          </defs>
+          <rect width="800" height="400" fill="url(#skyNow)"/>
+          <circle cx="650" cy="80" r="40" fill="#ffb347"/>
+          <polygon points="0,400 0,220 140,90 260,200 400,60 540,190 660,100 800,230 800,400" fill="#8a7a6a"/>
+          <polygon points="140,90 165,120 120,125" fill="#fff"/>
+          <polygon points="400,60 430,100 385,105 372,88" fill="#fff"/>
+          <polygon points="660,100 685,128 640,132" fill="#fff"/>
+          <polygon points="0,400 0,300 200,250 400,270 600,250 800,300 800,400" fill="#a08c74"/>
+          <ellipse cx="400" cy="340" rx="230" ry="40" fill="#4fb3d9"/>
+          <ellipse cx="400" cy="335" rx="170" ry="22" fill="#7cd0ec" opacity=".6"/>
+          <text x="770" y="385" text-anchor="end" class="svg-label">AHORA</text>
+        </svg>
+        <div class="compare-before" id="compareBefore">
+          <svg class="compare-img" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice" aria-label="Ilustración de un glaciar grande en el pasado">
+            <defs>
+              <linearGradient id="skyThen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fd8f5"/><stop offset="1" stop-color="#e3f5ff"/></linearGradient>
+            </defs>
+            <rect width="800" height="400" fill="url(#skyThen)"/>
+            <polygon points="0,400 0,220 140,90 260,200 400,60 540,190 660,100 800,230 800,400" fill="#7d8b99"/>
+            <polygon points="140,90 200,160 260,200 170,220 80,170" fill="#fff"/>
+            <polygon points="400,60 480,140 540,190 420,210 320,150" fill="#fff"/>
+            <polygon points="660,100 740,180 800,230 690,220 600,170" fill="#fff"/>
+            <path d="M0,400 L0,260 Q200,190 400,200 Q600,190 800,260 L800,400 Z" fill="#f2fbff"/>
+            <path d="M0,400 L0,310 Q200,260 400,270 Q600,260 800,310 L800,400 Z" fill="#d6effa"/>
+            <path d="M120,330 L260,300 M480,300 L640,330 M330,360 L470,350" stroke="#a9d8ee" stroke-width="4"/>
+            <text x="30" y="385" class="svg-label">ANTES</text>
+          </svg>
+        </div>
+        <div class="compare-line" id="compareLine"><span>⇆</span></div>
+        <input type="range" min="0" max="100" value="50" class="compare-range" id="compareRange" aria-label="Deslizar para comparar antes y ahora">
+      </div>
+      <p class="note">Ilustración con fines educativos.</p>
+    </section>
+
+    <!-- SIMULADOR DE TEMPERATURA -->
+    <section class="tool tool-alt" id="simulador">
+      <div class="tool-head reveal">
+        <span class="tag">Simulador</span>
+        <h2>¿Qué pasa si sube la temperatura?</h2>
+        <p>Elegí un escenario de calentamiento global y mirá cómo cambian el planeta y los riesgos, según los informes del IPCC.</p>
+      </div>
+      <div class="sim panel reveal">
+        <div class="sim-steps" id="simSteps"></div>
+        <input type="range" min="0" max="3" step="1" value="0" id="simRange" class="sim-range" aria-label="Elegir escenario de temperatura">
+        <svg id="simScene" class="sim-scene" viewBox="0 0 600 300" role="img" aria-label="Ilustración del escenario elegido"></svg>
+        <div id="simOut"></div>
+        <p class="note">Fuentes: IPCC, Sexto Informe de Evaluación (2021–2023) e Informe Especial sobre 1,5 °C (2018). Las frecuencias comparan con el clima de 1850–1900.</p>
+      </div>
+    </section>
+
+    <section class="section reverse" id="reciclaje">
+      <div class="section-text reveal">
+        <span class="tag">Reciclaje</span>
+        <h2>Reducir, reutilizar, reciclar</h2>
+        <p>En Argentina, cada persona genera en promedio alrededor de 1 kg de residuos por día. Separarlos correctamente permite que muchos materiales vuelvan a usarse en lugar de terminar en basurales.</p>
+        <div class="bins">
+          <div class="bin bin-yellow"><strong>Plásticos y latas</strong><small>Botellas, envases, latas limpias</small></div>
+          <div class="bin bin-blue"><strong>Papel y cartón</strong><small>Diarios, cajas, hojas</small></div>
+          <div class="bin bin-green"><strong>Vidrio</strong><small>Frascos y botellas</small></div>
+          <div class="bin bin-brown"><strong>Orgánicos</strong><small>Restos de comida, yerba, cáscaras</small></div>
+        </div>
+      </div>
+      <div class="section-card card-reciclaje reveal">
+        <div class="big-icon">♻️</div>
+      </div>
+    </section>
+
+    <section class="section" id="biodiversidad">
+      <div class="section-text reveal">
+        <span class="tag">Biodiversidad</span>
+        <h2>La vida en todas sus formas</h2>
+        <p>Plantas, animales, hongos y microorganismos forman ecosistemas que nos dan aire limpio, alimentos, medicinas y suelos fértiles. La pérdida de hábitats, la contaminación y las especies invasoras amenazan este equilibrio.</p>
+        <ul class="list">
+          <li>Las abejas y otros polinizadores son esenciales para gran parte de nuestros cultivos.</li>
+          <li>Los bosques albergan la mayor parte de las especies terrestres del planeta.</li>
+          <li>Proteger áreas naturales ayuda a conservar especies y a frenar el cambio climático.</li>
+        </ul>
+      </div>
+      <div class="section-card card-bio reveal">
+        <div class="big-icon">🦋</div>
+      </div>
+    </section>
+
+    <!-- ECORREGIONES -->
+    <section class="tool tool-alt" id="ecorregiones">
+      <div class="tool-head reveal">
+        <span class="tag">Ecología</span>
+        <h2>Las 18 ecorregiones de Argentina</h2>
+        <p>Argentina tiene una diversidad enorme: desde selvas subtropicales hasta hielos antárticos. Tocá cada punto para conocer su clima, su flora, su fauna y sus amenazas.</p>
+      </div>
+      <div class="eco reveal">
+        <div class="eco-map-wrap">
+          <svg id="ecoMap" class="eco-map" role="group" aria-label="Mapa de ecorregiones de Argentina"></svg>
+          <p class="note">Ubicación de los puntos aproximada. Contorno: Natural Earth.</p>
+        </div>
+        <div class="eco-side">
+          <div class="eco-info panel" id="ecoInfo" aria-live="polite"></div>
+          <p class="eco-count" id="ecoCount"></p>
+        </div>
+      </div>
+      <div class="eco-list" id="ecoList"></div>
+    </section>
+
+    <!-- RED ALIMENTARIA -->
+    <section class="tool" id="cadena">
+      <div class="tool-head reveal">
+        <span class="tag">Ecología</span>
+        <h2>La red alimentaria del pastizal</h2>
+        <p>En un ecosistema todo está conectado. Quitá una especie y descubrí el efecto dominó sobre las demás.</p>
+      </div>
+      <div class="web panel reveal">
+        <svg id="webSvg" class="web-svg" viewBox="0 0 700 430" role="group" aria-label="Red alimentaria del pastizal pampeano"></svg>
+        <div class="web-log" id="webLog" aria-live="polite"></div>
+        <div class="btn-row">
+          <button class="btn btn-small btn-outline" data-web="abejas">🐝 Probar sin abejas</button>
+          <button class="btn btn-small btn-outline" data-web="puma,zorro">🦊 Sin grandes depredadores</button>
+          <button class="btn btn-small btn-outline" data-web="pastos">🌾 Sin pastos</button>
+          <button class="btn btn-small" id="webReset">🔁 Restaurar ecosistema</button>
+        </div>
+      </div>
+      <p class="note">Red simplificada con fines educativos.</p>
+    </section>
+
+    <section class="section reverse" id="agua">
+      <div class="section-text reveal">
+        <span class="tag">Agua</span>
+        <h2>Un recurso más escaso de lo que parece</h2>
+        <p>Aunque el 70% del planeta está cubierto de agua, solo alrededor del 2,5% es agua dulce, y la mayor parte está congelada. Cuidarla es fundamental para la vida y la producción de alimentos.</p>
+        <ul class="list">
+          <li>Una canilla que gotea puede desperdiciar miles de litros al año.</li>
+          <li>Una ducha de 5 minutos usa mucha menos agua que un baño de inmersión.</li>
+          <li>No tirar aceites ni químicos por el desagüe evita contaminar ríos.</li>
+        </ul>
+      </div>
+      <div class="section-card card-agua reveal">
+        <div class="big-icon">💧</div>
+      </div>
+    </section>
+
+    <!-- CALIDAD DEL AIRE Y DEL AGUA -->
+    <section class="tool tool-alt" id="calidad">
+      <div class="tool-head reveal">
+        <span class="tag">Química ambiental</span>
+        <h2>Calidad del aire y del agua</h2>
+        <p>¿Cómo se sabe si el aire está limpio o si el agua se puede tomar? Probá el semáforo con valores reales y descubrí qué significa cada parámetro.</p>
+      </div>
+      <div class="tl-grid">
+        <div class="panel tl-panel reveal" id="airBox"></div>
+        <div class="panel tl-panel reveal" id="wqBox"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="layout.js"></script>
+  <script src="achievements.js"></script>
+  <script src="script.js"></script>
+  <script src="eia.js"></script>
+  <script src="ecoregiones.js"></script>
+  <script src="foodweb.js"></script>
+  <script src="clima-agua.js"></script>
+  <script src="calidad.js"></script>
+  <script src="residuos.js"></script>
+  <script src="audit.js"></script>
+  <script src="glossary.js"></script>
+  <script src="blog.js"></script>
+  <script src="docentes.js"></script>
+  <script src="ranking.js"></script>
+</body>
+</html>

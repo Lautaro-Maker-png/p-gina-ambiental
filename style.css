@@ -381,6 +381,7 @@ h2 { color: var(--heading); line-height: 1.2; }
   opacity: 0;
   cursor: ew-resize;
   margin: 0;
+  touch-action: pan-y; /* permite seguir bajando la página en el celular */
 }
 
 .note { text-align: center; font-size: 0.82rem; color: var(--text-soft); margin-top: 12px; }
@@ -560,6 +561,7 @@ h2 { color: var(--heading); line-height: 1.2; }
 }
 
 .action:hover { transform: translateY(-3px); }
+.action { position: relative; }
 .action input { position: absolute; opacity: 0; pointer-events: none; }
 .action-icon { font-size: 1.8rem; }
 
@@ -688,7 +690,8 @@ h2 { color: var(--heading); line-height: 1.2; }
 .footer .small { font-size: 0.8rem; opacity: 0.7; margin-top: 6px; }
 
 /* ---------- Animación de aparición ---------- */
-.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+/* Solo se oculta si JavaScript está activo: sin JS, el contenido se ve igual */
+.js .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .reveal.visible { opacity: 1; transform: none; }
 
 /* ---------- Responsive ---------- */
@@ -735,7 +738,7 @@ h2 { color: var(--heading); line-height: 1.2; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .section-card { animation: none; }
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
 }
 
 /* =====================================================
@@ -1386,7 +1389,7 @@ h2 { color: var(--heading); line-height: 1.2; }
 /* ---------- Blog ---------- */
 .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; max-width: 1100px; margin: 0 auto; }
 .post-card { background: var(--surface); border-radius: var(--radio); overflow: hidden; box-shadow: var(--sombra); display: flex; flex-direction: column; }
-.post-cover, .post-hero { background: linear-gradient(135deg, var(--pc), color-mix(in srgb, var(--pc) 55%, #1b4332)); display: grid; place-items: center; height: 130px; }
+.post-cover, .post-hero { background: var(--pc); background: linear-gradient(135deg, var(--pc), color-mix(in srgb, var(--pc) 55%, #1b4332)); display: grid; place-items: center; height: 130px; }
 .post-cover span, .post-hero span { font-size: 4rem; }
 .post-info { padding: 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
 .post-info h3 { color: var(--heading); line-height: 1.3; }
@@ -1486,3 +1489,159 @@ h2 { color: var(--heading); line-height: 1.2; }
 
 .eco-map-wrap .note { color: #35576a; }
 .toasts .toast:nth-last-child(n+4) { display: none; }
+
+/* =====================================================
+   Tanda 5: varias páginas, calidad, residuos, compost,
+   docentes, quiz por temas, app instalable
+   ===================================================== */
+
+/* ---------- Encabezado de páginas internas ---------- */
+.header-small { min-height: auto; }
+.page-hero { padding: 120px 5% 50px; max-width: 1000px; margin: 0 auto; text-align: center; }
+.page-emoji { font-size: 3.4rem; display: block; margin-bottom: 6px; }
+.page-hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.15; margin-bottom: 10px; }
+.page-hero p { opacity: 0.92; max-width: 680px; margin: 0 auto 22px; font-size: clamp(1rem, 2vw, 1.12rem); }
+.page-toc { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.page-toc a { background: rgba(255, 255, 255, 0.14); border: 1px solid rgba(255, 255, 255, 0.25); padding: 7px 14px; border-radius: 50px; font-size: 0.88rem; font-weight: 600; transition: background 0.2s; }
+.page-toc a:hover { background: rgba(255, 255, 255, 0.26); }
+.nav-links a[aria-current="page"] { color: #95d5b2; }
+.nav-links a[aria-current="page"]::after { width: 100%; }
+
+/* ---------- Pie de página ---------- */
+.footer-links { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: center; margin-bottom: 14px; }
+.footer-links a { font-weight: 600; font-size: 0.9rem; opacity: 0.9; }
+.footer-links a:hover { text-decoration: underline; }
+.install-btn { margin-top: 14px; background: #52b788; color: #10291f; border: none; border-radius: 50px; padding: 10px 20px; font: inherit; font-weight: 700; cursor: pointer; }
+
+/* ---------- Confirmación con segundo clic ---------- */
+.btn.armed { background: var(--bad); border-color: var(--bad); color: #fff; }
+
+/* ---------- Quiz por temas ---------- */
+.quiz-label { font-weight: 700; color: var(--heading); margin: 14px 0 8px; font-size: 0.95rem; }
+.quiz-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.quiz-count { margin-top: 16px; color: var(--text-soft); text-align: center; }
+
+/* ---------- Semáforo de calidad ---------- */
+.tl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 1100px; margin: 0 auto; align-items: start; }
+.tl-grid .panel { max-width: none; margin: 0; }
+.tl-head { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 16px; }
+.tl-icon { font-size: 2.4rem; }
+.tl-head h3 { color: var(--heading); line-height: 1.2; margin-bottom: 4px; }
+.tl-head p { color: var(--text-soft); font-size: 0.9rem; }
+.tl-control { display: flex; flex-direction: column; gap: 6px; font-size: 0.95rem; }
+.tl-control input { width: 100%; accent-color: var(--primary); }
+.tl-presets { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+.tl-presets button { border: 2px solid var(--border); background: var(--surface); color: var(--text); border-radius: 50px; padding: 6px 12px; font: inherit; font-size: 0.82rem; cursor: pointer; }
+.tl-presets button:hover { border-color: var(--accent); }
+.tl-result { display: flex; gap: 16px; align-items: center; background: var(--bg-alt); border-radius: 14px; padding: 16px; }
+.tl-result strong { font-size: 1.2rem; }
+.tl-result p { font-size: 0.92rem; margin: 2px 0 4px; }
+.tl-result small { color: var(--text-soft); }
+
+.tl-light {
+  flex-shrink: 0;
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: var(--tl);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--tl) 25%, transparent), 0 0 24px var(--tl);
+  display: grid;
+  place-items: center;
+  font-size: 2rem;
+  transition: background 0.3s;
+}
+
+.tl-light.small { width: 26px; height: 26px; font-size: 0; box-shadow: 0 0 12px var(--tl); }
+.wq-list { display: grid; gap: 10px; }
+.wq-row { display: flex; gap: 12px; background: var(--bg-alt); border-radius: 12px; padding: 12px; border-left: 6px solid var(--tl, var(--accent)); }
+.wq-light { flex-shrink: 0; width: 18px; height: 18px; border-radius: 50%; background: var(--tl); margin-top: 4px; box-shadow: 0 0 10px var(--tl); }
+.wq-main { flex: 1; min-width: 0; }
+.wq-top { display: flex; justify-content: space-between; gap: 8px; }
+.wq-main input { width: 100%; accent-color: var(--primary); }
+.wq-what { display: block; color: var(--text-soft); font-size: 0.78rem; line-height: 1.35; }
+.wq-msg { font-size: 0.86rem; font-weight: 600; margin-top: 4px; }
+.wq-summary { display: flex; gap: 12px; align-items: center; margin-top: 14px; padding: 12px; border-radius: 12px; border: 2px solid var(--border); }
+
+/* ---------- Residuos ---------- */
+.waste-checks { display: flex; flex-wrap: wrap; gap: 8px; }
+.waste-checks .option span { font-size: 0.86rem; }
+.waste-checks .option input:checked + span { background: var(--accent); border-color: var(--accent); }
+.waste-bar { display: flex; height: 26px; border-radius: 10px; overflow: hidden; margin: 10px 0; }
+.waste-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.82rem; color: var(--text-soft); margin-bottom: 14px; }
+.waste-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; }
+.waste-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.waste-facts div { background: var(--bg-alt); border-radius: 12px; padding: 10px; text-align: center; display: flex; flex-direction: column; }
+.waste-facts strong { color: var(--primary); font-size: 1.2rem; }
+.waste-facts small { color: var(--text-soft); font-size: 0.76rem; line-height: 1.3; }
+
+/* ---------- Compost ---------- */
+.compost { max-width: 1100px; margin: 50px auto 0; }
+.compost-steps { grid-template-columns: repeat(3, 1fr); margin-bottom: 20px; }
+.compost-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 30px; }
+.compost-cols .panel { max-width: none; margin: 0; }
+.compost-list h4 { color: var(--heading); margin: 10px 0 4px; }
+.compost-list h4:first-child { margin-top: 0; }
+.compost-list p { color: var(--text-soft); font-size: 0.92rem; }
+.compost-quiz { max-width: 520px; text-align: center; }
+.cq-top { color: var(--text-soft); font-size: 0.85rem; }
+.cq-item { display: flex; flex-direction: column; align-items: center; margin: 10px 0 16px; }
+.cq-item span { font-size: 4rem; }
+.cq-item strong { color: var(--heading); font-size: 1.25rem; }
+.cq-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.cq-fb { min-height: 2.8em; margin-top: 12px; font-weight: 600; }
+.cq-fb.ok { color: var(--ok); }
+.cq-fb.bad { color: var(--bad); }
+.cq-end .big { font-size: 3rem; font-weight: 700; color: var(--primary); }
+
+/* ---------- Docentes ---------- */
+.teach-intro { display: grid; grid-template-columns: 1.4fr 1fr; gap: 30px; max-width: 1100px; margin: 0 auto 36px; align-items: center; }
+.teach-intro h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); margin-bottom: 12px; }
+.teach-intro p { color: var(--text-soft); margin-bottom: 14px; }
+.teach-levels { display: grid; gap: 10px; }
+.teach-levels div { background: var(--surface); border-radius: 14px; padding: 14px 18px; border-left: 5px solid var(--accent); display: flex; flex-direction: column; }
+.teach-levels strong { color: var(--heading); }
+.teach-levels small { color: var(--text-soft); }
+.teach-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; max-width: 1100px; margin: 0 auto 30px; }
+.teach-card { background: var(--surface); border-radius: var(--radio); padding: 22px; box-shadow: var(--sombra); display: flex; flex-direction: column; gap: 10px; }
+.teach-top { display: flex; gap: 12px; align-items: center; }
+.teach-top > span { font-size: 2.4rem; }
+.teach-top h3 { color: var(--heading); line-height: 1.25; }
+.teach-top small { color: var(--primary); font-weight: 600; font-size: 0.8rem; }
+.teach-meta { list-style: none; font-size: 0.86rem; color: var(--text-soft); display: grid; gap: 2px; }
+.teach-meta a { color: var(--primary); font-weight: 600; text-decoration: underline; }
+.teach-card p { color: var(--text); font-size: 0.92rem; flex: 1; }
+.teach-card .btn-row { justify-content: flex-start; margin-top: 4px; }
+.teach-tips { max-width: 1100px; }
+.teach-tips h3 { color: var(--heading); margin-bottom: 10px; }
+.ficha-box { max-width: 760px; text-align: left; }
+.ficha h2 { color: var(--heading); margin: 4px 0; }
+.ficha h3 { color: var(--heading); margin: 16px 0 6px; font-size: 1.02rem; }
+.ficha p, .ficha li { color: var(--text); font-size: 0.93rem; }
+.ficha ul, .ficha ol { padding-left: 20px; }
+.f-head { border-bottom: 3px solid var(--accent); padding-bottom: 10px; }
+.f-head small { color: var(--primary); font-weight: 700; }
+.f-student { border: 2px dashed var(--accent-light); border-radius: 12px; padding: 12px 16px; margin-top: 18px; }
+.f-q { margin-bottom: 10px; }
+.f-q .line { border-bottom: 1px solid var(--text-soft); height: 26px; opacity: 0.5; }
+.f-foot { font-size: 0.8rem; color: var(--text-soft) !important; margin-top: 14px; }
+
+@media print {
+  body.print-ficha > *:not(.modal) { display: none !important; }
+  body.print-ficha .modal { position: static; background: none; padding: 0; display: block; }
+  body.print-ficha .modal-box { max-height: none; overflow: visible; box-shadow: none; padding: 0; max-width: none; }
+  body.print-ficha .no-print, body.print-ficha .modal-close { display: none !important; }
+}
+
+/* ---------- Responsive de lo nuevo ---------- */
+@media (max-width: 900px) {
+  .tl-grid, .compost-cols, .teach-intro { grid-template-columns: 1fr; }
+  .compost-steps { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .compost-steps { grid-template-columns: 1fr; }
+  .waste-facts { grid-template-columns: 1fr; }
+  .tl-result { flex-direction: column; text-align: center; }
+  .page-hero { padding: 100px 16px 40px; }
+}
+.compost-list .eia-table td:last-child { text-align: left; white-space: normal; }
+.compost-list .eia-table td:first-child { white-space: nowrap; font-weight: 600; }

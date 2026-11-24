@@ -11,8 +11,8 @@
   // ---------------------------------------------------
   const SCEN = [
     {
-      t: '+1,1 °C', label: 'Hoy',
-      intro: 'El planeta ya está unos 1,1 °C más caliente que antes de la Revolución Industrial. Los efectos ya se sienten.',
+      t: '+1,2 °C', label: 'Hoy',
+      intro: 'El planeta ya está alrededor de 1,2 °C más caliente que antes de la Revolución Industrial. Los efectos ya se sienten.',
       heat: '2,8 veces', drought: '1,7 veces', rain: '1,3 veces',
       sea: 'Ya subió unos 20 cm desde 1900',
       coral: 'Blanqueamientos masivos cada vez más frecuentes',
@@ -49,6 +49,10 @@
   ];
 
   const range = document.getElementById('simRange');
+  if (range) initSim();
+  if (document.getElementById('waterForm')) initWater();
+
+  function initSim() {
   const out = document.getElementById('simOut');
   const scene = document.getElementById('simScene');
   let simSeen = new Set(load('pv-sim', []));
@@ -77,7 +81,7 @@
       <text x="16" y="34" class="sim-label">${SCEN[i].t}</text>`;
   }
 
-  function showSim(i) {
+  function showSim(i, counts = true) {
     const d = SCEN[i];
     drawScene(i);
     out.innerHTML = `
@@ -93,6 +97,7 @@
         <div class="sim-card wide"><span>🦋</span><small>Especies</small><strong>${d.species}</strong></div>
       </div>`;
     document.querySelectorAll('.sim-step').forEach((b) => b.classList.toggle('active', +b.dataset.i === i));
+    if (!counts) return;
     simSeen.add(i);
     save('pv-sim', [...simSeen]);
     if (simSeen.size === SCEN.length && window.PV) PV.unlock('climate');
@@ -104,13 +109,13 @@
     if (b) { range.value = b.dataset.i; showSim(+b.dataset.i); }
   });
   range.addEventListener('input', () => showSim(+range.value));
-  showSim(0);
-  simSeen.delete(0); // el escenario inicial no cuenta hasta que la persona lo elija
-  save('pv-sim', [...simSeen]);
+  showSim(0, false); // el escenario inicial no cuenta hasta que la persona lo elija
+  }
 
   // ---------------------------------------------------
   //  Huella hídrica (valores promedio de Water Footprint Network)
   // ---------------------------------------------------
+  function initWater() {
   // [id, icono, pregunta, unidad, litros por unidad, frecuencia: 'sem' | 'mes' | 'dia', máximo, valor inicial]
   const WATER = [
     ['vaca', '🥩', 'Carne vacuna', 'kg por semana', 15400, 'sem', 3, 1, 0.25],
@@ -189,4 +194,5 @@
       </span>
     </button>`).join('');
   cards.addEventListener('click', (e) => { const f = e.target.closest('.flip'); if (f) f.classList.toggle('on'); });
+  }
 })();

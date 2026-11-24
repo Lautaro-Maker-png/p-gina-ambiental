@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Docentes · Planeta Verde</title>
+  <meta name="description" content="Secuencias didácticas y fichas imprimibles de educación ambiental para primaria, secundaria y nivel superior.">
+  <meta name="theme-color" content="#1b4332">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:title" content="Docentes · Planeta Verde">
+  <meta property="og:description" content="Calculá tu huella, evaluá proyectos como un profesional ambiental, explorá las ecorregiones de Argentina y sumá insignias cuidando el planeta 🌱">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Planeta Verde · Cuidemos nuestro ambiente">
+  <meta name="twitter:description" content="Calculá tu huella, evaluá proyectos ambientales, explorá ecorregiones y sumá insignias 🌱">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B1%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Aplicar el tema guardado antes de pintar la página
+    document.documentElement.classList.add('js');
+    try {
+      let t = localStorage.getItem('pv-theme');
+      try { t = JSON.parse(t); } catch (e) {}
+      if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
+</head>
+<body>
+
+  <header class="header header-small">
+    <div class="page-hero">
+      <span class="page-emoji" aria-hidden="true">🍎</span>
+      <h1>Para docentes</h1>
+      <p>Secuencias didácticas listas para usar en clase, con fichas para imprimir o descargar.</p>
+      <nav class="page-toc" aria-label="En esta página"></nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="tool" id="docentes">
+      <div class="teach-intro reveal">
+        <div>
+          <span class="tag">Educación ambiental</span>
+          <h2>Planeta Verde en el aula</h2>
+          <p>La Ley 27.621 de Educación Ambiental Integral establece la educación ambiental como un derecho en todos los niveles. Estas secuencias usan las herramientas de la página para trabajar en clase.</p>
+          <ul class="list">
+            <li>Cada ficha incluye objetivos, secuencia, evaluación y una hoja para estudiantes.</li>
+            <li>Podés verla en pantalla, imprimirla o descargarla para editarla.</li>
+            <li>Las insignias y el ranking ayudan a motivar al grupo.</li>
+          </ul>
+        </div>
+        <div class="teach-levels">
+          <div><strong>🧒 Primaria</strong><small>Red de la vida, Detectives del agua, juego de reciclaje</small></div>
+          <div><strong>🧑 Secundaria</strong><small>Auditoría, clima 2100, ecorregiones, derechos</small></div>
+          <div><strong>🎓 Superior</strong><small>Audiencia pública simulada (EIA), glosario técnico</small></div>
+        </div>
+      </div>
+      <div class="teach-grid" id="teachGrid"></div>
+      <div class="teach-tips panel reveal">
+        <h3>💡 Ideas para sacarle más provecho</h3>
+        <ul class="list">
+          <li>Proyectá la página y resolvé el quiz entre todos, eligiendo el tema de la clase.</li>
+          <li>Organizá una competencia por grupos en el juego de reciclaje.</li>
+          <li>Usá el desafío de 30 días como proyecto del mes y registrá avances en el aula.</li>
+          <li>Pedí que lean un artículo del blog y escriban uno nuevo sobre un problema de su ciudad.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <script src="layout.js"></script>
+  <script src="achievements.js"></script>
+  <script src="script.js"></script>
+  <script src="eia.js"></script>
+  <script src="ecoregiones.js"></script>
+  <script src="foodweb.js"></script>
+  <script src="clima-agua.js"></script>
+  <script src="calidad.js"></script>
+  <script src="residuos.js"></script>
+  <script src="audit.js"></script>
+  <script src="glossary.js"></script>
+  <script src="blog.js"></script>
+  <script src="docentes.js"></script>
+  <script src="ranking.js"></script>
+</body>
+</html>

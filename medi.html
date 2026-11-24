@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medí tu impacto · Planeta Verde</title>
+  <meta name="description" content="Calculá tu huella de carbono, tu huella hídrica y tus residuos, aprendé a compostar y hacé una auditoría ambiental de tu casa o escuela.">
+  <meta name="theme-color" content="#1b4332">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:title" content="Medí tu impacto · Planeta Verde">
+  <meta property="og:description" content="Calculá tu huella, evaluá proyectos como un profesional ambiental, explorá las ecorregiones de Argentina y sumá insignias cuidando el planeta 🌱">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Planeta Verde · Cuidemos nuestro ambiente">
+  <meta name="twitter:description" content="Calculá tu huella, evaluá proyectos ambientales, explorá ecorregiones y sumá insignias 🌱">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B1%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Aplicar el tema guardado antes de pintar la página
+    document.documentElement.classList.add('js');
+    try {
+      let t = localStorage.getItem('pv-theme');
+      try { t = JSON.parse(t); } catch (e) {}
+      if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
+</head>
+<body>
+
+  <header class="header header-small">
+    <div class="page-hero">
+      <span class="page-emoji" aria-hidden="true">📏</span>
+      <h1>Medí tu impacto</h1>
+      <p>Calculadoras y herramientas para conocer tu impacto y saber por dónde empezar a cambiar.</p>
+      <nav class="page-toc" aria-label="En esta página"><a href="#calculadora">🌍 Huella de carbono</a><a href="#hidrica">💧 Huella hídrica</a><a href="#residuos">🗑️ Residuos y compost</a><a href="#auditoria">📝 Auditoría</a></nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- CALCULADORA -->
+    <section class="tool" id="calculadora">
+      <div class="tool-head reveal">
+        <span class="tag">Calculadora</span>
+        <h2>¿Cuál es tu huella de carbono?</h2>
+        <p>Respondé 7 preguntas y obtené una estimación de cuánto CO₂ generás por año.</p>
+      </div>
+      <form class="calc panel reveal" id="calcForm"></form>
+      <div class="calc-result panel" id="calcResult" hidden></div>
+    </section>
+
+    <!-- HUELLA HÍDRICA -->
+    <section class="tool tool-alt" id="hidrica">
+      <div class="tool-head reveal">
+        <span class="tag">Agua</span>
+        <h2>Tu huella hídrica</h2>
+        <p>Casi toda el agua que usamos está “escondida” en lo que comemos y compramos. Mové los controles según tu consumo habitual.</p>
+      </div>
+      <div class="water reveal">
+        <form class="water-form panel" id="waterForm" onsubmit="return false"></form>
+        <div class="water-out panel" id="waterOut"></div>
+      </div>
+      <h3 class="sub-head reveal">¿Cuánta agua hay en…?</h3>
+      <div class="flips" id="waterCards"></div>
+      <p class="note">Valores promedio mundiales aproximados (Water Footprint Network). Varían según el lugar y la forma de producción.</p>
+    </section>
+
+    <!-- RESIDUOS Y COMPOST -->
+    <section class="tool" id="residuos">
+      <div class="tool-head reveal">
+        <span class="tag">Gestión de residuos</span>
+        <h2>¿Cuánta basura generás?</h2>
+        <p>En Argentina cada persona genera en promedio alrededor de 1 kg de residuos por día. Calculá cuánto genera tu casa y cuánto podrías evitar.</p>
+      </div>
+      <div class="water reveal">
+        <form class="water-form panel" id="wasteForm" onsubmit="return false"></form>
+        <div class="water-out panel" id="wasteOut"></div>
+      </div>
+      <p class="note">Composición típica aproximada de los residuos domiciliarios. Varía según la ciudad y la época del año.</p>
+
+      <div class="compost" id="compost">
+        <h3 class="sub-head reveal">🪱 Guía de compost paso a paso</h3>
+        <p class="sub-intro reveal">El compost transforma tus restos orgánicos en abono para plantas. Reduce hasta la mitad de la basura de tu casa.</p>
+        <div class="steps compost-steps">
+          <div class="step reveal"><span class="step-num">1</span><h4>Elegí el recipiente</h4><p>Un cajón de madera, un balde con agujeros o una compostera. Ubicalo en un lugar con sombra y en contacto con tierra si es posible.</p></div>
+          <div class="step reveal"><span class="step-num">2</span><h4>Base de secos</h4><p>Poné una capa de ramitas, hojas secas o cartón cortado para que circule el aire.</p></div>
+          <div class="step reveal"><span class="step-num">3</span><h4>Alterná capas</h4><p>Por cada balde de restos “verdes” (húmedos) agregá una cantidad parecida de material “marrón” (seco).</p></div>
+          <div class="step reveal"><span class="step-num">4</span><h4>Humedad justa</h4><p>Debe estar húmedo como una esponja escurrida: ni seco ni chorreando.</p></div>
+          <div class="step reveal"><span class="step-num">5</span><h4>Mezclá y airea</h4><p>Revolvé una vez por semana para que entre oxígeno y no haya olor.</p></div>
+          <div class="step reveal"><span class="step-num">6</span><h4>¡A cosechar!</h4><p>En 2 a 4 meses vas a tener un material oscuro con olor a tierra de bosque. Usalo en macetas y huertas.</p></div>
+        </div>
+        <div class="compost-cols">
+          <div class="panel compost-list reveal">
+            <h4>🟢 Verdes (aportan nitrógeno)</h4>
+            <p>Cáscaras y restos de frutas y verduras, yerba, borra de café, saquitos de té, pasto recién cortado.</p>
+            <h4>🟤 Marrones (aportan carbono)</h4>
+            <p>Hojas secas, ramitas, cartón y papel sin tinta cortados, aserrín de madera sin tratar.</p>
+            <h4>🔴 No van</h4>
+            <p>Carne, huesos, lácteos, aceite, heces de mascotas, plantas enfermas, plásticos (aunque digan “biodegradable”).</p>
+          </div>
+          <div class="panel compost-list reveal">
+            <h4>🛠️ Problemas comunes</h4>
+            <table class="eia-table">
+              <tr><td>😖 Huele mal</td><td>Demasiado húmedo o falta aire: agregá secos y revolvé.</td></tr>
+              <tr><td>🪰 Hay moscas</td><td>Tapá los restos nuevos con una capa de secos.</td></tr>
+              <tr><td>🏜️ No se descompone</td><td>Está seco: agregá verdes o un poco de agua.</td></tr>
+              <tr><td>🐜 Hormigas</td><td>Falta humedad: regá un poco y mezclá.</td></tr>
+            </table>
+          </div>
+        </div>
+        <h3 class="sub-head reveal">¿Va al compost?</h3>
+        <div class="panel compost-quiz reveal" id="compostQuiz" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- AUDITORÍA -->
+    <section class="tool" id="auditoria">
+      <div class="tool-head reveal">
+        <span class="tag">Auditoría ambiental</span>
+        <h2>Auditá tu casa, escuela u oficina</h2>
+        <p>Respondé 24 preguntas sobre energía, agua, residuos, consumo, movilidad y espacios verdes. Vas a recibir una calificación y un plan de mejora que podés descargar o imprimir.</p>
+      </div>
+      <div class="audit panel reveal">
+        <div class="audit-setup">
+          <label>Tipo de lugar
+            <select id="auditType">
+              <option value="hogar">🏠 Hogar</option>
+              <option value="escuela">🏫 Escuela o institución</option>
+              <option value="oficina">🏢 Oficina o comercio</option>
+            </select>
+          </label>
+          <label>Nombre del lugar (opcional)
+            <input type="text" id="auditPlace" maxlength="60" placeholder="Ej.: Escuela N.º 12">
+          </label>
+        </div>
+        <form id="auditForm"></form>
+      </div>
+      <div class="audit-out panel" id="auditOut" hidden></div>
+    </section>
+  </main>
+
+  <script src="layout.js"></script>
+  <script src="achievements.js"></script>
+  <script src="script.js"></script>
+  <script src="eia.js"></script>
+  <script src="ecoregiones.js"></script>
+  <script src="foodweb.js"></script>
+  <script src="clima-agua.js"></script>
+  <script src="calidad.js"></script>
+  <script src="residuos.js"></script>
+  <script src="audit.js"></script>
+  <script src="glossary.js"></script>
+  <script src="blog.js"></script>
+  <script src="docentes.js"></script>
+  <script src="ranking.js"></script>
+</body>
+</html>

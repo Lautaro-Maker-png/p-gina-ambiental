@@ -52,6 +52,7 @@
   ];
 
   const form = document.getElementById('auditForm');
+  if (!form) return;
   const out = document.getElementById('auditOut');
   const placeInput = document.getElementById('auditPlace');
   const typeSel = document.getElementById('auditType');

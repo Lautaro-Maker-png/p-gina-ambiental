@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actuá · Planeta Verde</title>
+  <meta name="description" content="Acciones cotidianas, desafío de 30 días, calendario de fechas ambientales y guía de puntos verdes para descartar residuos especiales.">
+  <meta name="theme-color" content="#1b4332">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:title" content="Actuá · Planeta Verde">
+  <meta property="og:description" content="Calculá tu huella, evaluá proyectos como un profesional ambiental, explorá las ecorregiones de Argentina y sumá insignias cuidando el planeta 🌱">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Planeta Verde · Cuidemos nuestro ambiente">
+  <meta name="twitter:description" content="Calculá tu huella, evaluá proyectos ambientales, explorá ecorregiones y sumá insignias 🌱">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B1%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Aplicar el tema guardado antes de pintar la página
+    document.documentElement.classList.add('js');
+    try {
+      let t = localStorage.getItem('pv-theme');
+      try { t = JSON.parse(t); } catch (e) {}
+      if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
+</head>
+<body>
+
+  <header class="header header-small">
+    <div class="page-hero">
+      <span class="page-emoji" aria-hidden="true">🌿</span>
+      <h1>Actuá</h1>
+      <p>Pequeñas acciones diarias, un desafío para crear hábitos y todo lo que necesitás para participar.</p>
+      <nav class="page-toc" aria-label="En esta página"><a href="#acciones">✅ Acciones</a><a href="#desafio">📅 Desafío 30 días</a><a href="#calendario">🗓️ Calendario</a><a href="#puntos">📍 Puntos verdes</a></nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- CHECKLIST -->
+    <section class="actions" id="acciones">
+      <h2 class="reveal">¿Qué puedo hacer yo?</h2>
+      <p class="actions-intro reveal">Marcá las acciones que ya hacés y descubrí tu nivel de compromiso con el planeta.</p>
+      <div class="action-grid">
+        <label class="action reveal"><input type="checkbox"><span class="action-icon">🚲</span><span>Camino, uso bici o transporte público</span></label>
+        <label class="action reveal"><input type="checkbox"><span class="action-icon">💡</span><span>Apago las luces que no uso</span></label>
+        <label class="action reveal"><input type="checkbox"><span class="action-icon">🛍️</span><span>Llevo mi propia bolsa para hacer las compras</span></label>
+        <label class="action reveal"><input type="checkbox"><span class="action-icon">♻️</span><span>Separo los residuos en casa</span></label>
+        <label class="action reveal"><input type="checkbox"><span class="action-icon">🚿</span><span>Me ducho en menos de 5 minutos</span></label>
+        <label class="action reveal"><input type="checkbox"><span class="action-icon">🌳</span><span>Planté un árbol o cuido plantas</span></label>
+        <label class="action reveal"><input type="checkbox"><span class="action-icon">🥤</span><span>Evito plásticos de un solo uso</span></label>
+        <label class="action reveal"><input type="checkbox"><span class="action-icon">🥕</span><span>Compro productos locales y de estación</span></label>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+        <p class="progress-text" id="progressText">Marcá al menos una acción para empezar 🌱</p>
+      </div>
+    </section>
+
+    <!-- DESAFÍO 30 DÍAS -->
+    <section class="tool" id="desafio">
+      <div class="tool-head reveal">
+        <span class="tag">Desafío</span>
+        <h2>30 días por el planeta</h2>
+        <p>Una acción por día. Tocá cada día cuando lo cumplas: tu avance se guarda en este navegador.</p>
+      </div>
+      <div class="challenge-top reveal">
+        <div class="progress progress-light"><div class="progress-bar" id="chBar"></div></div>
+        <p id="chText" class="ch-text">0 de 30 días completados</p>
+      </div>
+      <div class="challenge-grid" id="chGrid"></div>
+      <div class="center"><button class="btn btn-outline btn-small" id="chReset">Reiniciar desafío</button></div>
+    </section>
+
+    <!-- CALENDARIO -->
+    <section class="tool tool-alt" id="calendario">
+      <div class="tool-head reveal">
+        <span class="tag">Calendario</span>
+        <h2>Fechas ambientales</h2>
+        <p>Días internacionales para recordar, participar y difundir.</p>
+      </div>
+      <div class="next-date reveal" id="nextDate"></div>
+      <div class="dates" id="dates"></div>
+    </section>
+
+    <!-- PUNTOS VERDES -->
+    <section class="tool" id="puntos">
+      <div class="tool-head reveal">
+        <span class="tag">Puntos verdes</span>
+        <h2>¿Dónde llevo cada cosa?</h2>
+        <p>Algunos residuos no van a la basura común ni a los contenedores de la calle. Así se descartan correctamente:</p>
+      </div>
+      <div class="points">
+        <div class="point reveal"><span class="point-icon">🔋</span><h3>Pilas y baterías</h3><p>Guardalas en una botella cerrada y llevalas a un punto de recolección de pilas (muchos supermercados y municipios tienen).</p></div>
+        <div class="point reveal"><span class="point-icon">📱</span><h3>Electrónicos</h3><p>Celulares, cargadores y computadoras viejas van a puntos de recolección de RAEE o campañas de reciclaje electrónico.</p></div>
+        <div class="point reveal"><span class="point-icon">🛢️</span><h3>Aceite de cocina</h3><p>Dejalo enfriar, guardalo en una botella de plástico cerrada y llevalo a un punto de acopio. Nunca por la pileta.</p></div>
+        <div class="point reveal"><span class="point-icon">💊</span><h3>Medicamentos vencidos</h3><p>Muchas farmacias reciben remedios vencidos para descartarlos de forma segura.</p></div>
+        <div class="point reveal"><span class="point-icon">👕</span><h3>Ropa y textiles</h3><p>Si está en buen estado, donala. Si no, buscá contenedores de reciclaje textil.</p></div>
+        <div class="point reveal"><span class="point-icon">💡</span><h3>Lámparas</h3><p>Las lámparas de bajo consumo contienen mercurio: van a puntos limpios o puntos verdes especiales.</p></div>
+      </div>
+      <div class="center reveal">
+        <a class="btn" href="https://www.google.com/maps/search/punto+verde+reciclaje" target="_blank" rel="noopener">📍 Buscar puntos verdes cerca de mí</a>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="layout.js"></script>
+  <script src="achievements.js"></script>
+  <script src="script.js"></script>
+  <script src="eia.js"></script>
+  <script src="ecoregiones.js"></script>
+  <script src="foodweb.js"></script>
+  <script src="clima-agua.js"></script>
+  <script src="calidad.js"></script>
+  <script src="residuos.js"></script>
+  <script src="audit.js"></script>
+  <script src="glossary.js"></script>
+  <script src="blog.js"></script>
+  <script src="docentes.js"></script>
+  <script src="ranking.js"></script>
+</body>
+</html>

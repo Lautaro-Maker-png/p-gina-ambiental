@@ -31,6 +31,7 @@
   const proj = (lon, lat) => [(lon + 74) * c * k, (-21.6 - lat) * k];
 
   const svg = document.getElementById('ecoMap');
+  if (!svg) return;
   const info = document.getElementById('ecoInfo');
   const list = document.getElementById('ecoList');
   const counter = document.getElementById('ecoCount');

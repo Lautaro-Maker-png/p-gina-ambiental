@@ -224,6 +224,10 @@
   ];
 
   const box = document.getElementById('eiaBox');
+  if (box) initEia();
+  initLaws();
+
+  function initEia() {
   const load = (k, f) => { try { const v = localStorage.getItem(k); return v === null ? f : JSON.parse(v); } catch (e) { return f; } };
   const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
   let bests = load('pv-eia', {});
@@ -419,12 +423,17 @@
   }
 
   menu();
+  }
 
   // =====================================================
   //  Derechos: contar leyes leídas
   // =====================================================
+  function initLaws() {
+  const load = (k, f) => { try { const v = localStorage.getItem(k); return v === null ? f : JSON.parse(v); } catch (e) { return f; } };
+  const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
   const laws = [...document.querySelectorAll('#laws .law')];
   const count = document.getElementById('rightsCount');
+  if (!laws.length || !count) return;
   let read = new Set(load('pv-laws', []));
 
   function paintLaws() {
@@ -442,4 +451,5 @@
     })
   );
   paintLaws();
+  }
 })();

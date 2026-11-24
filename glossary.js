@@ -76,6 +76,7 @@
   const CAT_ICON = { Ecología: '🌿', Clima: '🌡️', Agua: '💧', Residuos: '♻️', Gestión: '📋', Legal: '⚖️' };
 
   const search = document.getElementById('glSearch');
+  if (!search) return;
   const cats = document.getElementById('glCats');
   const list = document.getElementById('glList');
   const count = document.getElementById('glCount');

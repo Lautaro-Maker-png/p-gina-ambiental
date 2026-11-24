@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Planeta Verde</title>
-  <meta name="description" content="Aprendé sobre el ambiente y medí tu impacto: calculadoras de huella de carbono e hídrica, simulador de Evaluación de Impacto Ambiental, ecorregiones de Argentina, derechos ambientales, juegos y desafíos.">
+  <title>Planeta Verde · Cuidemos nuestro ambiente</title>
+  <meta name="description" content="Aprendé sobre el ambiente y medí tu impacto: calculadoras de huella de carbono, hídrica y de residuos, simulador de Evaluación de Impacto Ambiental, ecorregiones de Argentina, derechos ambientales, juegos y recursos para docentes.">
   <meta name="theme-color" content="#1b4332">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_AR">
@@ -17,42 +17,29 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="stylesheet" href="style.css">
   <script>
     // Aplicar el tema guardado antes de pintar la página
+    document.documentElement.classList.add('js');
     try {
-      const t = localStorage.getItem('pv-theme');
-      if (t) document.documentElement.dataset.theme = t;
+      let t = localStorage.getItem('pv-theme');
+      try { t = JSON.parse(t); } catch (e) {}
+      if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t;
     } catch (e) {}
   </script>
 </head>
 <body>
 
   <header class="header" id="inicio">
-    <nav class="nav">
-      <a href="#inicio" class="logo">🌱 Planeta Verde</a>
-      <div class="nav-right">
-        <ul class="nav-links">
-          <li><a href="#explora">Explorá</a></li>
-          <li><a href="#ecorregiones">Ecorregiones</a></li>
-          <li><a href="#eia">Evaluá</a></li>
-          <li><a href="#derechos">Derechos</a></li>
-          <li><a href="#blog">Blog</a></li>
-          <li><a href="#logros">Logros</a></li>
-        </ul>
-        <button class="theme-toggle" id="themeToggle" aria-label="Cambiar modo claro u oscuro">🌙</button>
-        <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </nav>
 
     <div class="hero">
       <h1>Un solo planeta.<br><span>Una gran responsabilidad.</span></h1>
       <p>Conocé los principales desafíos ambientales de nuestro tiempo, medí tu impacto y descubrí cómo pequeñas acciones diarias pueden generar un gran cambio.</p>
       <div class="hero-buttons">
-        <a href="#clima" class="btn">Empezar a explorar</a>
-        <a href="#calculadora" class="btn btn-ghost">Calcular mi huella</a>
+        <a href="aprender.html" class="btn">Empezar a explorar</a>
+        <a href="medi.html#calculadora" class="btn btn-ghost">Calcular mi huella</a>
       </div>
     </div>
   </header>
@@ -95,558 +82,26 @@
         <p>Aprendé, medí tu impacto, jugá y sumá insignias. Elegí por dónde empezar.</p>
       </div>
       <div class="hub-grid">
-        <a class="hub-card reveal" href="#simulador"><span>🌡️</span><strong>Simulador del clima</strong><small>¿Qué pasa si sube la temperatura?</small></a>
-        <a class="hub-card reveal" href="#ecorregiones"><span>🗺️</span><strong>Ecorregiones</strong><small>Las 18 de Argentina en un mapa</small></a>
-        <a class="hub-card reveal" href="#cadena"><span>🕸️</span><strong>Red alimentaria</strong><small>Quitá una especie y mirá qué pasa</small></a>
-        <a class="hub-card reveal" href="#hidrica"><span>💧</span><strong>Huella hídrica</strong><small>El agua escondida en lo que consumís</small></a>
-        <a class="hub-card reveal" href="#calculadora"><span>🌍</span><strong>Huella de carbono</strong><small>Tus emisiones de CO₂ por año</small></a>
-        <a class="hub-card reveal" href="#auditoria"><span>📝</span><strong>Auditoría ambiental</strong><small>Evaluá tu casa o tu escuela</small></a>
-        <a class="hub-card reveal" href="#juego"><span>♻️</span><strong>Juego de reciclaje</strong><small>¿En qué contenedor va?</small></a>
-        <a class="hub-card reveal" href="#quiz"><span>🧠</span><strong>Quiz</strong><small>¿Cuánto sabés del ambiente?</small></a>
-        <a class="hub-card reveal" href="#eia"><span>⚖️</span><strong>Evaluá un proyecto</strong><small>Simulador de impacto ambiental</small></a>
-        <a class="hub-card reveal" href="#derechos"><span>📜</span><strong>Derechos ambientales</strong><small>Las leyes explicadas fácil</small></a>
-        <a class="hub-card reveal" href="#glosario"><span>📖</span><strong>Glosario</strong><small>Más de 60 términos ambientales</small></a>
-        <a class="hub-card reveal" href="#desafio"><span>📅</span><strong>Desafío 30 días</strong><small>Una acción verde por día</small></a>
-        <a class="hub-card reveal" href="#calendario"><span>🗓️</span><strong>Calendario</strong><small>Fechas ambientales</small></a>
-        <a class="hub-card reveal" href="#puntos"><span>📍</span><strong>Puntos verdes</strong><small>Dónde llevar cada residuo</small></a>
-        <a class="hub-card reveal" href="#blog"><span>📰</span><strong>Blog</strong><small>Artículos para leer</small></a>
+        <a class="hub-card reveal" href="aprender.html#simulador"><span>🌡️</span><strong>Simulador del clima</strong><small>¿Qué pasa si sube la temperatura?</small></a>
+        <a class="hub-card reveal" href="aprender.html#ecorregiones"><span>🗺️</span><strong>Ecorregiones</strong><small>Las 18 de Argentina en un mapa</small></a>
+        <a class="hub-card reveal" href="aprender.html#cadena"><span>🕸️</span><strong>Red alimentaria</strong><small>Quitá una especie y mirá qué pasa</small></a>
+        <a class="hub-card reveal" href="medi.html#hidrica"><span>💧</span><strong>Huella hídrica</strong><small>El agua escondida en lo que consumís</small></a>
+        <a class="hub-card reveal" href="medi.html#calculadora"><span>🌍</span><strong>Huella de carbono</strong><small>Tus emisiones de CO₂ por año</small></a>
+        <a class="hub-card reveal" href="medi.html#auditoria"><span>📝</span><strong>Auditoría ambiental</strong><small>Evaluá tu casa o tu escuela</small></a>
+        <a class="hub-card reveal" href="juegos.html#juego"><span>♻️</span><strong>Juego de reciclaje</strong><small>¿En qué contenedor va?</small></a>
+        <a class="hub-card reveal" href="juegos.html#quiz"><span>🧠</span><strong>Quiz</strong><small>¿Cuánto sabés del ambiente?</small></a>
+        <a class="hub-card reveal" href="juegos.html#eia"><span>⚖️</span><strong>Evaluá un proyecto</strong><small>Simulador de impacto ambiental</small></a>
+        <a class="hub-card reveal" href="derechos.html#derechos"><span>📜</span><strong>Derechos ambientales</strong><small>Las leyes explicadas fácil</small></a>
+        <a class="hub-card reveal" href="derechos.html#glosario"><span>📖</span><strong>Glosario</strong><small>66 términos ambientales</small></a>
+        <a class="hub-card reveal" href="actua.html#desafio"><span>📅</span><strong>Desafío 30 días</strong><small>Una acción verde por día</small></a>
+        <a class="hub-card reveal" href="actua.html#calendario"><span>🗓️</span><strong>Calendario</strong><small>Fechas ambientales</small></a>
+        <a class="hub-card reveal" href="actua.html#puntos"><span>📍</span><strong>Puntos verdes</strong><small>Dónde llevar cada residuo</small></a>
+        <a class="hub-card reveal" href="blog.html#blog"><span>📰</span><strong>Blog</strong><small>Artículos para leer</small></a>
         <a class="hub-card reveal" href="#logros"><span>🏅</span><strong>Logros y ranking</strong><small>Tus insignias y la comunidad</small></a>
+        <a class="hub-card reveal" href="aprender.html#calidad"><span>🧪</span><strong>Calidad del aire y del agua</strong><small>Un semáforo con valores reales</small></a>
+        <a class="hub-card reveal" href="medi.html#residuos"><span>🪱</span><strong>Residuos y compost</strong><small>Calculá tu basura y aprendé a compostar</small></a>
+        <a class="hub-card reveal" href="docentes.html"><span>🍎</span><strong>Para docentes</strong><small>Secuencias y fichas imprimibles</small></a>
       </div>
-    </section>
-
-    <!-- APRENDER -->
-    <section class="section" id="clima">
-      <div class="section-text reveal">
-        <span class="tag">Cambio climático</span>
-        <h2>El planeta se está calentando</h2>
-        <p>La quema de combustibles fósiles (carbón, petróleo y gas) libera gases de efecto invernadero que atrapan el calor en la atmósfera. Esto provoca olas de calor más intensas, sequías, inundaciones y el derretimiento de los glaciares.</p>
-        <ul class="list">
-          <li>El transporte y la energía son las mayores fuentes de emisiones.</li>
-          <li>La deforestación reduce la capacidad del planeta de absorber CO₂.</li>
-          <li>Las energías renovables (solar, eólica) son parte clave de la solución.</li>
-        </ul>
-      </div>
-      <div class="section-card card-clima reveal">
-        <div class="big-icon">🌡️</div>
-      </div>
-    </section>
-
-    <!-- Antes y después -->
-    <section class="compare-section">
-      <div class="compare-head reveal">
-        <span class="tag">Antes y ahora</span>
-        <h2>Los glaciares retroceden</h2>
-        <p>Deslizá para comparar. Muchos glaciares del mundo perdieron gran parte de su hielo en las últimas décadas y dejaron lagos y roca al descubierto.</p>
-      </div>
-      <div class="compare reveal" id="compare">
-        <svg class="compare-img" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice" aria-label="Ilustración de un glaciar pequeño en la actualidad">
-          <defs>
-            <linearGradient id="skyNow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6c48b"/><stop offset="1" stop-color="#fbe3c2"/></linearGradient>
-          </defs>
-          <rect width="800" height="400" fill="url(#skyNow)"/>
-          <circle cx="650" cy="80" r="40" fill="#ffb347"/>
-          <polygon points="0,400 0,220 140,90 260,200 400,60 540,190 660,100 800,230 800,400" fill="#8a7a6a"/>
-          <polygon points="140,90 165,120 120,125" fill="#fff"/>
-          <polygon points="400,60 430,100 385,105 372,88" fill="#fff"/>
-          <polygon points="660,100 685,128 640,132" fill="#fff"/>
-          <polygon points="0,400 0,300 200,250 400,270 600,250 800,300 800,400" fill="#a08c74"/>
-          <ellipse cx="400" cy="340" rx="230" ry="40" fill="#4fb3d9"/>
-          <ellipse cx="400" cy="335" rx="170" ry="22" fill="#7cd0ec" opacity=".6"/>
-          <text x="770" y="385" text-anchor="end" class="svg-label">AHORA</text>
-        </svg>
-        <div class="compare-before" id="compareBefore">
-          <svg class="compare-img" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice" aria-label="Ilustración de un glaciar grande en el pasado">
-            <defs>
-              <linearGradient id="skyThen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fd8f5"/><stop offset="1" stop-color="#e3f5ff"/></linearGradient>
-            </defs>
-            <rect width="800" height="400" fill="url(#skyThen)"/>
-            <polygon points="0,400 0,220 140,90 260,200 400,60 540,190 660,100 800,230 800,400" fill="#7d8b99"/>
-            <polygon points="140,90 200,160 260,200 170,220 80,170" fill="#fff"/>
-            <polygon points="400,60 480,140 540,190 420,210 320,150" fill="#fff"/>
-            <polygon points="660,100 740,180 800,230 690,220 600,170" fill="#fff"/>
-            <path d="M0,400 L0,260 Q200,190 400,200 Q600,190 800,260 L800,400 Z" fill="#f2fbff"/>
-            <path d="M0,400 L0,310 Q200,260 400,270 Q600,260 800,310 L800,400 Z" fill="#d6effa"/>
-            <path d="M120,330 L260,300 M480,300 L640,330 M330,360 L470,350" stroke="#a9d8ee" stroke-width="4"/>
-            <text x="30" y="385" class="svg-label">ANTES</text>
-          </svg>
-        </div>
-        <div class="compare-line" id="compareLine"><span>⇆</span></div>
-        <input type="range" min="0" max="100" value="50" class="compare-range" id="compareRange" aria-label="Deslizar para comparar antes y ahora">
-      </div>
-      <p class="note">Ilustración con fines educativos.</p>
-    </section>
-
-    <!-- SIMULADOR DE TEMPERATURA -->
-    <section class="tool tool-alt" id="simulador">
-      <div class="tool-head reveal">
-        <span class="tag">Simulador</span>
-        <h2>¿Qué pasa si sube la temperatura?</h2>
-        <p>Elegí un escenario de calentamiento global y mirá cómo cambian el planeta y los riesgos, según los informes del IPCC.</p>
-      </div>
-      <div class="sim panel reveal">
-        <div class="sim-steps" id="simSteps"></div>
-        <input type="range" min="0" max="3" step="1" value="0" id="simRange" class="sim-range" aria-label="Elegir escenario de temperatura">
-        <svg id="simScene" class="sim-scene" viewBox="0 0 600 300" role="img" aria-label="Ilustración del escenario elegido"></svg>
-        <div id="simOut"></div>
-        <p class="note">Fuentes: IPCC, Sexto Informe de Evaluación (2021–2023) e Informe Especial sobre 1,5 °C (2018). Las frecuencias comparan con el clima de 1850–1900.</p>
-      </div>
-    </section>
-
-    <section class="section reverse" id="reciclaje">
-      <div class="section-text reveal">
-        <span class="tag">Reciclaje</span>
-        <h2>Reducir, reutilizar, reciclar</h2>
-        <p>Cada persona genera en promedio cerca de 1 kg de residuos por día. Separarlos correctamente permite que muchos materiales vuelvan a usarse en lugar de terminar en basurales.</p>
-        <div class="bins">
-          <div class="bin bin-yellow"><strong>Plásticos y latas</strong><small>Botellas, envases, latas limpias</small></div>
-          <div class="bin bin-blue"><strong>Papel y cartón</strong><small>Diarios, cajas, hojas</small></div>
-          <div class="bin bin-green"><strong>Vidrio</strong><small>Frascos y botellas</small></div>
-          <div class="bin bin-brown"><strong>Orgánicos</strong><small>Restos de comida, yerba, cáscaras</small></div>
-        </div>
-      </div>
-      <div class="section-card card-reciclaje reveal">
-        <div class="big-icon">♻️</div>
-      </div>
-    </section>
-
-    <section class="section" id="biodiversidad">
-      <div class="section-text reveal">
-        <span class="tag">Biodiversidad</span>
-        <h2>La vida en todas sus formas</h2>
-        <p>Plantas, animales, hongos y microorganismos forman ecosistemas que nos dan aire limpio, alimentos, medicinas y suelos fértiles. La pérdida de hábitats, la contaminación y las especies invasoras amenazan este equilibrio.</p>
-        <ul class="list">
-          <li>Las abejas y otros polinizadores son esenciales para gran parte de nuestros cultivos.</li>
-          <li>Los bosques albergan alrededor del 80% de las especies terrestres.</li>
-          <li>Proteger áreas naturales ayuda a conservar especies y a frenar el cambio climático.</li>
-        </ul>
-      </div>
-      <div class="section-card card-bio reveal">
-        <div class="big-icon">🦋</div>
-      </div>
-    </section>
-
-    <!-- ECORREGIONES -->
-    <section class="tool tool-alt" id="ecorregiones">
-      <div class="tool-head reveal">
-        <span class="tag">Ecología</span>
-        <h2>Las 18 ecorregiones de Argentina</h2>
-        <p>Argentina tiene una diversidad enorme: desde selvas subtropicales hasta hielos antárticos. Tocá cada punto para conocer su clima, su flora, su fauna y sus amenazas.</p>
-      </div>
-      <div class="eco reveal">
-        <div class="eco-map-wrap">
-          <svg id="ecoMap" class="eco-map" role="group" aria-label="Mapa de ecorregiones de Argentina"></svg>
-          <p class="note">Ubicación de los puntos aproximada. Contorno: Natural Earth.</p>
-        </div>
-        <div class="eco-side">
-          <div class="eco-info panel" id="ecoInfo" aria-live="polite"></div>
-          <p class="eco-count" id="ecoCount"></p>
-        </div>
-      </div>
-      <div class="eco-list" id="ecoList"></div>
-    </section>
-
-    <!-- RED ALIMENTARIA -->
-    <section class="tool" id="cadena">
-      <div class="tool-head reveal">
-        <span class="tag">Ecología</span>
-        <h2>La red alimentaria del pastizal</h2>
-        <p>En un ecosistema todo está conectado. Quitá una especie y descubrí el efecto dominó sobre las demás.</p>
-      </div>
-      <div class="web panel reveal">
-        <svg id="webSvg" class="web-svg" viewBox="0 0 700 430" role="group" aria-label="Red alimentaria del pastizal pampeano"></svg>
-        <div class="web-log" id="webLog" aria-live="polite"></div>
-        <div class="btn-row">
-          <button class="btn btn-small btn-outline" data-web="abejas">🐝 Probar sin abejas</button>
-          <button class="btn btn-small btn-outline" data-web="puma,zorro">🦊 Sin grandes depredadores</button>
-          <button class="btn btn-small btn-outline" data-web="pastos">🌾 Sin pastos</button>
-          <button class="btn btn-small" id="webReset">🔁 Restaurar ecosistema</button>
-        </div>
-      </div>
-      <p class="note">Red simplificada con fines educativos.</p>
-    </section>
-
-    <section class="section reverse" id="agua">
-      <div class="section-text reveal">
-        <span class="tag">Agua</span>
-        <h2>Un recurso más escaso de lo que parece</h2>
-        <p>Aunque el 70% del planeta está cubierto de agua, solo alrededor del 2,5% es agua dulce, y la mayor parte está congelada. Cuidarla es fundamental para la vida y la producción de alimentos.</p>
-        <ul class="list">
-          <li>Una canilla que gotea puede desperdiciar miles de litros al año.</li>
-          <li>Una ducha de 5 minutos usa mucha menos agua que un baño de inmersión.</li>
-          <li>No tirar aceites ni químicos por el desagüe evita contaminar ríos.</li>
-        </ul>
-      </div>
-      <div class="section-card card-agua reveal">
-        <div class="big-icon">💧</div>
-      </div>
-    </section>
-
-    <!-- HUELLA HÍDRICA -->
-    <section class="tool tool-alt" id="hidrica">
-      <div class="tool-head reveal">
-        <span class="tag">Agua</span>
-        <h2>Tu huella hídrica</h2>
-        <p>Casi toda el agua que usamos está “escondida” en lo que comemos y compramos. Mové los controles según tu consumo habitual.</p>
-      </div>
-      <div class="water reveal">
-        <form class="water-form panel" id="waterForm" onsubmit="return false"></form>
-        <div class="water-out panel" id="waterOut"></div>
-      </div>
-      <h3 class="sub-head reveal">¿Cuánta agua hay en…?</h3>
-      <div class="flips" id="waterCards"></div>
-      <p class="note">Valores promedio mundiales aproximados (Water Footprint Network). Varían según el lugar y la forma de producción.</p>
-    </section>
-
-    <!-- CALCULADORA -->
-    <section class="tool" id="calculadora">
-      <div class="tool-head reveal">
-        <span class="tag">Calculadora</span>
-        <h2>¿Cuál es tu huella de carbono?</h2>
-        <p>Respondé 7 preguntas y obtené una estimación de cuánto CO₂ generás por año.</p>
-      </div>
-      <form class="calc panel reveal" id="calcForm"></form>
-      <div class="calc-result panel" id="calcResult" hidden></div>
-    </section>
-
-    <!-- AUDITORÍA -->
-    <section class="tool" id="auditoria">
-      <div class="tool-head reveal">
-        <span class="tag">Auditoría ambiental</span>
-        <h2>Auditá tu casa, escuela u oficina</h2>
-        <p>Respondé 24 preguntas sobre energía, agua, residuos, consumo, movilidad y espacios verdes. Vas a recibir una calificación y un plan de mejora que podés descargar o imprimir.</p>
-      </div>
-      <div class="audit panel reveal">
-        <div class="audit-setup">
-          <label>Tipo de lugar
-            <select id="auditType">
-              <option value="hogar">🏠 Hogar</option>
-              <option value="escuela">🏫 Escuela o institución</option>
-              <option value="oficina">🏢 Oficina o comercio</option>
-            </select>
-          </label>
-          <label>Nombre del lugar (opcional)
-            <input type="text" id="auditPlace" maxlength="60" placeholder="Ej.: Escuela N.º 12">
-          </label>
-        </div>
-        <form id="auditForm"></form>
-      </div>
-      <div class="audit-out panel" id="auditOut" hidden></div>
-    </section>
-
-    <!-- JUEGO -->
-    <section class="tool tool-alt" id="juego">
-      <div class="tool-head reveal">
-        <span class="tag">Juego</span>
-        <h2>¿En qué contenedor va?</h2>
-        <p>Tenés 60 segundos. Tocá el contenedor correcto para cada residuo: +10 si acertás, −5 si te equivocás.</p>
-      </div>
-      <div class="game reveal" id="game">
-        <div class="game-bar">
-          <span>⏱️ <strong id="gameTime">60</strong> s</span>
-          <span>⭐ <strong id="gameScore">0</strong> pts</span>
-          <span>🏆 Récord: <strong id="gameBest">0</strong></span>
-        </div>
-        <div class="game-stage">
-          <div class="game-item" id="gameItem">
-            <span class="game-emoji">♻️</span>
-            <span class="game-name">¿Listo para jugar?</span>
-          </div>
-          <p class="game-feedback" id="gameFeedback" aria-live="polite"></p>
-          <button class="btn" id="gameStart">Empezar</button>
-        </div>
-        <div class="game-bins" id="gameBins">
-          <button class="gbin bin-yellow" data-bin="amarillo" disabled>🟡<span>Plásticos y latas</span></button>
-          <button class="gbin bin-blue" data-bin="azul" disabled>🔵<span>Papel y cartón</span></button>
-          <button class="gbin bin-green" data-bin="verde" disabled>🟢<span>Vidrio</span></button>
-          <button class="gbin bin-brown" data-bin="marron" disabled>🟤<span>Orgánicos</span></button>
-          <button class="gbin bin-red" data-bin="especial" disabled>🔴<span>Punto especial</span></button>
-        </div>
-        <p class="note">Los colores de los contenedores pueden variar según tu ciudad.</p>
-      </div>
-    </section>
-
-    <!-- QUIZ -->
-    <section class="tool" id="quiz">
-      <div class="tool-head reveal">
-        <span class="tag">Quiz</span>
-        <h2>¿Cuánto sabés del ambiente?</h2>
-        <p>10 preguntas. Después de cada una vas a ver la explicación.</p>
-      </div>
-      <div class="quiz panel reveal" id="quizBox"></div>
-    </section>
-
-    <!-- EVALUÁ UN PROYECTO (EIA) -->
-    <section class="tool tool-alt" id="eia">
-      <div class="tool-head reveal">
-        <span class="tag">Evaluación de Impacto Ambiental</span>
-        <h2>Evaluá un proyecto</h2>
-        <p>Ponete en el lugar de un equipo evaluador: analizá proyectos reales simplificados, identificá sus impactos, elegí medidas y tomá una decisión.</p>
-      </div>
-
-      <div class="eia-intro reveal">
-        <div class="eia-intro-text">
-          <h3>¿Qué es una EIA?</h3>
-          <p>La <strong>Evaluación de Impacto Ambiental</strong> es un procedimiento obligatorio en Argentina para obras o actividades que puedan degradar el ambiente de forma significativa (Ley General del Ambiente 25.675, artículos 11 a 13). Antes de aprobar un proyecto, la autoridad analiza qué efectos tendrá y cómo prevenirlos.</p>
-        </div>
-        <ol class="eia-steps">
-          <li><span>🔍</span><strong>Identificar</strong><small>¿Qué impactos puede causar?</small></li>
-          <li><span>🛡️</span><strong>Mitigar</strong><small>¿Qué medidas los evitan o reducen?</small></li>
-          <li><span>🗣️</span><strong>Participar</strong><small>La comunidad opina en audiencias públicas</small></li>
-          <li><span>⚖️</span><strong>Decidir</strong><small>Aprobar, condicionar, pedir estudios o rechazar</small></li>
-        </ol>
-      </div>
-
-      <div class="eia panel reveal" id="eiaBox"></div>
-      <p class="note">Casos ficticios y simplificados con fines educativos.</p>
-    </section>
-
-    <!-- DERECHOS AMBIENTALES -->
-    <section class="tool" id="derechos">
-      <div class="tool-head reveal">
-        <span class="tag">Derecho ambiental</span>
-        <h2>Tus derechos ambientales</h2>
-        <p>En Argentina, el ambiente sano es un derecho de todas las personas. Conocé las normas más importantes explicadas en lenguaje simple.</p>
-      </div>
-
-      <blockquote class="constitution reveal">
-        <span class="const-label">Constitución Nacional · Artículo 41</span>
-        <p>“Todos los habitantes gozan del derecho a un ambiente sano, equilibrado, apto para el desarrollo humano y para que las actividades productivas satisfagan las necesidades presentes sin comprometer las de las generaciones futuras; y tienen el deber de preservarlo. El daño ambiental generará prioritariamente la obligación de recomponer, según lo establezca la ley.”</p>
-        <small>Incorporado en la reforma constitucional de 1994. El artículo 43 permite, además, presentar una acción de <strong>amparo</strong> para proteger el ambiente.</small>
-      </blockquote>
-
-      <h3 class="sub-head reveal">Las leyes clave</h3>
-      <p class="sub-intro reveal">Tocá cada ley para leer de qué se trata. <span id="rightsCount">0 de 10 leídas</span></p>
-
-      <div class="laws" id="laws">
-        <details class="law reveal">
-          <summary><span class="law-icon">🌎</span><span class="law-title"><small>Ley 25.675 · 2002</small>Ley General del Ambiente</span></summary>
-          <div class="law-body">
-            <p>Es la ley “madre”: fija los <strong>presupuestos mínimos</strong> de protección ambiental que rigen en todo el país.</p>
-            <ul>
-              <li>Establece los principios de la política ambiental (preventivo, precautorio, equidad intergeneracional y otros).</li>
-              <li>Obliga a hacer una <strong>Evaluación de Impacto Ambiental</strong> antes de obras que puedan dañar el ambiente.</li>
-              <li>Garantiza el <strong>acceso a la información</strong> y la <strong>participación ciudadana</strong>, por ejemplo en audiencias públicas.</li>
-              <li>Quien cause un daño ambiental debe <strong>recomponerlo</strong>.</li>
-            </ul>
-            <p class="law-why">👉 <strong>Por qué te importa:</strong> te da derecho a opinar sobre proyectos que afectan tu entorno.</p>
-          </div>
-        </details>
-
-        <details class="law reveal">
-          <summary><span class="law-icon">🌳</span><span class="law-title"><small>Ley 26.331 · 2007</small>Ley de Bosques Nativos</span></summary>
-          <div class="law-body">
-            <p>Protege los bosques nativos y obliga a cada provincia a hacer un <strong>ordenamiento territorial</strong> de sus bosques en tres categorías:</p>
-            <ul>
-              <li>🔴 <strong>Categoría I (rojo):</strong> muy alto valor de conservación, no se pueden transformar.</li>
-              <li>🟡 <strong>Categoría II (amarillo):</strong> uso sostenible, turismo, investigación.</li>
-              <li>🟢 <strong>Categoría III (verde):</strong> pueden transformarse parcialmente, con autorización.</li>
-            </ul>
-            <p>Crea un fondo para compensar a quienes conservan bosques.</p>
-            <p class="law-why">👉 <strong>Por qué te importa:</strong> los desmontes ilegales pueden denunciarse.</p>
-          </div>
-        </details>
-
-        <details class="law reveal">
-          <summary><span class="law-icon">🏔️</span><span class="law-title"><small>Ley 26.639 · 2010</small>Ley de Glaciares</span></summary>
-          <div class="law-body">
-            <p>Protege los glaciares y el ambiente periglacial como <strong>reservas de agua dulce</strong>.</p>
-            <ul>
-              <li>Prohíbe actividades que puedan afectarlos, como la minería y la explotación de hidrocarburos en esas zonas.</li>
-              <li>Crea el <strong>Inventario Nacional de Glaciares</strong>, a cargo del IANIGLA (CONICET).</li>
-            </ul>
-            <p class="law-why">👉 <strong>Por qué te importa:</strong> muchas ciudades dependen del agua de deshielo.</p>
-          </div>
-        </details>
-
-        <details class="law reveal">
-          <summary><span class="law-icon">🗑️</span><span class="law-title"><small>Ley 25.916 · 2004</small>Gestión de Residuos Domiciliarios</span></summary>
-          <div class="law-body">
-            <p>Establece cómo deben gestionarse los residuos que generamos en casa, en todas sus etapas: generación, disposición inicial, recolección, transferencia, tratamiento y disposición final.</p>
-            <ul>
-              <li>Los municipios son responsables de la gestión.</li>
-              <li>Promueve la valorización (reciclaje, reutilización) y reducir lo que va a disposición final.</li>
-            </ul>
-            <p class="law-why">👉 <strong>Por qué te importa:</strong> separar en casa es el primer eslabón de la cadena.</p>
-          </div>
-        </details>
-
-        <details class="law reveal">
-          <summary><span class="law-icon">☣️</span><span class="law-title"><small>Ley 24.051 · 1992</small>Residuos Peligrosos</span></summary>
-          <div class="law-body">
-            <p>Regula la generación, manipulación, transporte, tratamiento y disposición final de residuos peligrosos (químicos, industriales, patogénicos).</p>
-            <ul>
-              <li>Quien genera un residuo peligroso es <strong>responsable</strong> de él.</li>
-              <li>Crea un registro de generadores y operadores.</li>
-              <li>Establece sanciones penales por contaminar con estos residuos.</li>
-            </ul>
-            <p class="law-why">👉 <strong>Por qué te importa:</strong> protege el agua y el suelo de sustancias tóxicas.</p>
-          </div>
-        </details>
-
-        <details class="law reveal">
-          <summary><span class="law-icon">📂</span><span class="law-title"><small>Ley 25.831 · 2004</small>Acceso a la Información Ambiental</span></summary>
-          <div class="law-body">
-            <p>Toda persona puede pedir información ambiental a organismos públicos <strong>sin explicar para qué</strong> la quiere.</p>
-            <ul>
-              <li>El acceso es gratuito (salvo costos de copias).</li>
-              <li>El organismo debe responder en un plazo máximo de <strong>30 días hábiles</strong>.</li>
-            </ul>
-            <p class="law-why">👉 <strong>Por qué te importa:</strong> podés saber qué se vierte en tu río o cómo está el aire de tu ciudad.</p>
-          </div>
-        </details>
-
-        <details class="law reveal">
-          <summary><span class="law-icon">🤝</span><span class="law-title"><small>Ley 27.566 · 2020</small>Acuerdo de Escazú</span></summary>
-          <div class="law-body">
-            <p>Tratado regional de América Latina y el Caribe que Argentina aprobó por ley. Garantiza tres derechos de acceso:</p>
-            <ul>
-              <li>📄 Acceso a la <strong>información</strong> ambiental.</li>
-              <li>🗣️ <strong>Participación</strong> pública en decisiones ambientales.</li>
-              <li>⚖️ Acceso a la <strong>justicia</strong> en asuntos ambientales.</li>
-            </ul>
-            <p>Es el primer tratado del mundo con disposiciones para proteger a las <strong>personas defensoras del ambiente</strong>.</p>
-          </div>
-        </details>
-
-        <details class="law reveal">
-          <summary><span class="law-icon">🎓</span><span class="law-title"><small>Ley 27.621 · 2021</small>Educación Ambiental Integral</span></summary>
-          <div class="law-body">
-            <p>Establece la educación ambiental como política pública en todo el país, en todos los niveles educativos y también fuera de la escuela.</p>
-            <p class="law-why">👉 <strong>Por qué te importa:</strong> aprender sobre el ambiente es un derecho.</p>
-          </div>
-        </details>
-
-        <details class="law reveal">
-          <summary><span class="law-icon">🏛️</span><span class="law-title"><small>Ley 27.592 · 2020</small>Ley Yolanda</span></summary>
-          <div class="law-body">
-            <p>Obliga a que todas las personas que trabajan en la función pública, en los tres poderes del Estado, reciban <strong>capacitación en ambiente y desarrollo sostenible</strong>.</p>
-            <p>Lleva el nombre de Yolanda Ortiz, la primera secretaria de Recursos Naturales y Ambiente Humano de Argentina y de América Latina.</p>
-          </div>
-        </details>
-
-        <details class="law reveal">
-          <summary><span class="law-icon">🔥</span><span class="law-title"><small>Ley 26.562 · 2009</small>Control de Quemas</span></summary>
-          <div class="law-body">
-            <p>Prohíbe hacer quemas (por ejemplo, para limpiar campos) <strong>sin autorización</strong> de la autoridad local.</p>
-            <p class="law-why">👉 <strong>Por qué te importa:</strong> las quemas sin control causan incendios y humo que afecta la salud.</p>
-          </div>
-        </details>
-      </div>
-
-      <h3 class="sub-head reveal">Los principios de la política ambiental</h3>
-      <p class="sub-intro reveal">Según el artículo 4 de la Ley General del Ambiente, toda decisión ambiental debe respetar estos principios:</p>
-      <div class="principles">
-        <div class="principle reveal"><strong>🛡️ Preventivo</strong><span>Los problemas ambientales se atienden antes de que ocurran.</span></div>
-        <div class="principle reveal"><strong>⚠️ Precautorio</strong><span>Si hay peligro de daño grave, la falta de certeza científica no es excusa para no actuar.</span></div>
-        <div class="principle reveal"><strong>👶 Equidad intergeneracional</strong><span>Hay que cuidar el ambiente también para las generaciones futuras.</span></div>
-        <div class="principle reveal"><strong>📈 Progresividad</strong><span>Los objetivos ambientales se alcanzan de forma gradual, con metas.</span></div>
-        <div class="principle reveal"><strong>💼 Responsabilidad</strong><span>Quien genera un daño ambiental debe hacerse cargo de prevenirlo y recomponerlo.</span></div>
-        <div class="principle reveal"><strong>🏛️ Subsidiariedad</strong><span>El Estado nacional colabora y, si hace falta, participa junto a provincias y municipios.</span></div>
-        <div class="principle reveal"><strong>♻️ Sustentabilidad</strong><span>El desarrollo económico y social no debe comprometer los recursos naturales.</span></div>
-        <div class="principle reveal"><strong>🤲 Solidaridad</strong><span>Cada jurisdicción es responsable de los efectos que cause más allá de sus límites.</span></div>
-        <div class="principle reveal"><strong>🤝 Cooperación</strong><span>Los recursos compartidos se gestionan en forma equitativa y conjunta.</span></div>
-        <div class="principle reveal"><strong>🔗 Congruencia</strong><span>Las leyes provinciales y municipales deben adecuarse a esta ley.</span></div>
-      </div>
-
-      <h3 class="sub-head reveal">¿Viste un problema ambiental? Qué podés hacer</h3>
-      <div class="steps">
-        <div class="step reveal"><span class="step-num">1</span><h4>Registrá</h4><p>Sacá fotos o videos, anotá fecha, hora y lugar exacto.</p></div>
-        <div class="step reveal"><span class="step-num">2</span><h4>Pedí información</h4><p>Con la Ley 25.831 podés pedir datos al organismo responsable. Tienen 30 días hábiles para responder.</p></div>
-        <div class="step reveal"><span class="step-num">3</span><h4>Denunciá</h4><p>Ante la autoridad ambiental de tu municipio o provincia, o en la Defensoría del Pueblo.</p></div>
-        <div class="step reveal"><span class="step-num">4</span><h4>Organizate</h4><p>Sumate a vecinos u organizaciones. Ante un daño grave, existe la acción de amparo ambiental.</p></div>
-      </div>
-      <p class="note">Información de divulgación con resúmenes simplificados. No reemplaza el asesoramiento legal profesional.</p>
-    </section>
-
-    <!-- GLOSARIO -->
-    <section class="tool tool-alt" id="glosario">
-      <div class="tool-head reveal">
-        <span class="tag">Glosario</span>
-        <h2>Glosario ambiental</h2>
-        <p>Los términos más usados en ecología, clima, residuos, gestión y derecho ambiental, explicados en pocas palabras.</p>
-      </div>
-      <div class="gloss panel reveal">
-        <input type="search" id="glSearch" class="gl-search" placeholder="🔍 Buscar un término… (ej.: humedal, lixiviado, precautorio)" aria-label="Buscar en el glosario">
-        <div class="gl-cats" id="glCats"></div>
-        <p class="gl-count" id="glCount"></p>
-        <div class="gl-list" id="glList"></div>
-      </div>
-    </section>
-
-    <!-- CHECKLIST -->
-    <section class="actions" id="acciones">
-      <h2 class="reveal">¿Qué puedo hacer yo?</h2>
-      <p class="actions-intro reveal">Marcá las acciones que ya hacés y descubrí tu nivel de compromiso con el planeta.</p>
-      <div class="action-grid">
-        <label class="action reveal"><input type="checkbox"><span class="action-icon">🚲</span><span>Camino, uso bici o transporte público</span></label>
-        <label class="action reveal"><input type="checkbox"><span class="action-icon">💡</span><span>Apago las luces que no uso</span></label>
-        <label class="action reveal"><input type="checkbox"><span class="action-icon">🛍️</span><span>Llevo mi propia bolsa para hacer las compras</span></label>
-        <label class="action reveal"><input type="checkbox"><span class="action-icon">♻️</span><span>Separo los residuos en casa</span></label>
-        <label class="action reveal"><input type="checkbox"><span class="action-icon">🚿</span><span>Me ducho en menos de 5 minutos</span></label>
-        <label class="action reveal"><input type="checkbox"><span class="action-icon">🌳</span><span>Planté un árbol o cuido plantas</span></label>
-        <label class="action reveal"><input type="checkbox"><span class="action-icon">🥤</span><span>Evito plásticos de un solo uso</span></label>
-        <label class="action reveal"><input type="checkbox"><span class="action-icon">🥕</span><span>Compro productos locales y de estación</span></label>
-      </div>
-      <div class="progress-wrap">
-        <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
-        <p class="progress-text" id="progressText">Marcá al menos una acción para empezar 🌱</p>
-      </div>
-    </section>
-
-    <!-- DESAFÍO 30 DÍAS -->
-    <section class="tool" id="desafio">
-      <div class="tool-head reveal">
-        <span class="tag">Desafío</span>
-        <h2>30 días por el planeta</h2>
-        <p>Una acción por día. Tocá cada día cuando lo cumplas: tu avance se guarda en este navegador.</p>
-      </div>
-      <div class="challenge-top reveal">
-        <div class="progress progress-light"><div class="progress-bar" id="chBar"></div></div>
-        <p id="chText" class="ch-text">0 de 30 días completados</p>
-      </div>
-      <div class="challenge-grid" id="chGrid"></div>
-      <div class="center"><button class="btn btn-outline btn-small" id="chReset">Reiniciar desafío</button></div>
-    </section>
-
-    <!-- CALENDARIO -->
-    <section class="tool tool-alt" id="calendario">
-      <div class="tool-head reveal">
-        <span class="tag">Calendario</span>
-        <h2>Fechas ambientales</h2>
-        <p>Días internacionales para recordar, participar y difundir.</p>
-      </div>
-      <div class="next-date reveal" id="nextDate"></div>
-      <div class="dates" id="dates"></div>
-    </section>
-
-    <!-- PUNTOS VERDES -->
-    <section class="tool" id="puntos">
-      <div class="tool-head reveal">
-        <span class="tag">Puntos verdes</span>
-        <h2>¿Dónde llevo cada cosa?</h2>
-        <p>Algunos residuos no van a la basura común ni a los contenedores de la calle. Así se descartan correctamente:</p>
-      </div>
-      <div class="points">
-        <div class="point reveal"><span class="point-icon">🔋</span><h3>Pilas y baterías</h3><p>Guardalas en una botella cerrada y llevalas a un punto de recolección de pilas (muchos supermercados y municipios tienen).</p></div>
-        <div class="point reveal"><span class="point-icon">📱</span><h3>Electrónicos</h3><p>Celulares, cargadores y computadoras viejas van a puntos de recolección de RAEE o campañas de reciclaje electrónico.</p></div>
-        <div class="point reveal"><span class="point-icon">🛢️</span><h3>Aceite de cocina</h3><p>Dejalo enfriar, guardalo en una botella de plástico cerrada y llevalo a un punto de acopio. Nunca por la pileta.</p></div>
-        <div class="point reveal"><span class="point-icon">💊</span><h3>Medicamentos vencidos</h3><p>Muchas farmacias reciben remedios vencidos para descartarlos de forma segura.</p></div>
-        <div class="point reveal"><span class="point-icon">👕</span><h3>Ropa y textiles</h3><p>Si está en buen estado, donala. Si no, buscá contenedores de reciclaje textil.</p></div>
-        <div class="point reveal"><span class="point-icon">💡</span><h3>Lámparas</h3><p>Las lámparas de bajo consumo contienen mercurio: van a puntos limpios o puntos verdes especiales.</p></div>
-      </div>
-      <div class="center reveal">
-        <a class="btn" href="https://www.google.com/maps/search/punto+verde+reciclaje" target="_blank" rel="noopener">📍 Buscar puntos verdes cerca de mí</a>
-      </div>
-    </section>
-
-    <!-- BLOG -->
-    <section class="tool" id="blog">
-      <div class="tool-head reveal">
-        <span class="tag">Blog</span>
-        <h2>Artículos</h2>
-        <p>Lecturas cortas para entender mejor los temas ambientales.</p>
-      </div>
-      <div class="blog-grid" id="blogGrid"></div>
     </section>
 
     <!-- SOBRE EL PROYECTO -->
@@ -695,23 +150,19 @@
     </section>
   </main>
 
-  <a href="#logros" class="fab" id="fab" aria-label="Ver mis logros">🏅 <span id="fabPts">0</span> pts</a>
-  <div class="toasts" id="toasts" aria-live="polite"></div>
-
-  <footer class="footer">
-    <p>🌍 <strong>Planeta Verde</strong> — Cuidar el ambiente es tarea de todos.</p>
-    <p class="small">Datos aproximados basados en informes de la ONU, IPCC, IPBES y FAO. La calculadora da una estimación orientativa. La sección de derechos es de divulgación y no reemplaza el asesoramiento legal.</p>
-  </footer>
-
+  <script src="layout.js"></script>
   <script src="achievements.js"></script>
   <script src="script.js"></script>
   <script src="eia.js"></script>
   <script src="ecoregiones.js"></script>
   <script src="foodweb.js"></script>
   <script src="clima-agua.js"></script>
+  <script src="calidad.js"></script>
+  <script src="residuos.js"></script>
   <script src="audit.js"></script>
   <script src="glossary.js"></script>
   <script src="blog.js"></script>
+  <script src="docentes.js"></script>
   <script src="ranking.js"></script>
 </body>
 </html>

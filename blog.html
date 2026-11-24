@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog · Planeta Verde</title>
+  <meta name="description" content="Artículos cortos sobre reciclaje, humedales, gestión ambiental y otros temas ambientales.">
+  <meta name="theme-color" content="#1b4332">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:title" content="Blog · Planeta Verde">
+  <meta property="og:description" content="Calculá tu huella, evaluá proyectos como un profesional ambiental, explorá las ecorregiones de Argentina y sumá insignias cuidando el planeta 🌱">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Planeta Verde · Cuidemos nuestro ambiente">
+  <meta name="twitter:description" content="Calculá tu huella, evaluá proyectos ambientales, explorá ecorregiones y sumá insignias 🌱">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B1%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Aplicar el tema guardado antes de pintar la página
+    document.documentElement.classList.add('js');
+    try {
+      let t = localStorage.getItem('pv-theme');
+      try { t = JSON.parse(t); } catch (e) {}
+      if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
+</head>
+<body>
+
+  <header class="header header-small">
+    <div class="page-hero">
+      <span class="page-emoji" aria-hidden="true">📰</span>
+      <h1>Blog</h1>
+      <p>Lecturas cortas para entender mejor los temas ambientales.</p>
+      <nav class="page-toc" aria-label="En esta página"></nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- BLOG -->
+    <section class="tool" id="blog">
+      <div class="tool-head reveal">
+        <h2>Últimos artículos</h2>
+        <p>Lecturas cortas para entender mejor los temas ambientales.</p>
+      </div>
+      <div class="blog-grid" id="blogGrid"></div>
+    </section>
+
+  </main>
+
+  <script src="layout.js"></script>
+  <script src="achievements.js"></script>
+  <script src="script.js"></script>
+  <script src="eia.js"></script>
+  <script src="ecoregiones.js"></script>
+  <script src="foodweb.js"></script>
+  <script src="clima-agua.js"></script>
+  <script src="calidad.js"></script>
+  <script src="residuos.js"></script>
+  <script src="audit.js"></script>
+  <script src="glossary.js"></script>
+  <script src="blog.js"></script>
+  <script src="docentes.js"></script>
+  <script src="ranking.js"></script>
+</body>
+</html>

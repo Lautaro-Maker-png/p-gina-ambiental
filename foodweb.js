@@ -20,6 +20,7 @@
   };
 
   const svg = document.getElementById('webSvg');
+  if (!svg) return;
   const log = document.getElementById('webLog');
   let removed = new Set();   // quitadas por la persona
   let extinct = new Set();   // desaparecidas en cascada
