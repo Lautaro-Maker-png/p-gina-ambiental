@@ -1,6 +1,6 @@
 // Service worker: guarda la página para que funcione sin conexión.
 // Cuando cambies archivos, subí el número de versión para renovar la copia guardada.
-const VERSION = 'pv-v1';
+const VERSION = 'pv-v2';
 const FILES = [
   './', 'index.html', 'aprender.html', 'medi.html', 'juegos.html', 'derechos.html', 'actua.html', 'blog.html', 'docentes.html',
   'style.css', 'layout.js', 'achievements.js', 'script.js', 'eia.js', 'ecoregiones.js', 'foodweb.js', 'clima-agua.js',

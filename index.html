@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Planeta Verde · Cuidemos nuestro ambiente</title>
   <meta name="description" content="Aprendé sobre el ambiente y medí tu impacto: calculadoras de huella de carbono, hídrica y de residuos, simulador de Evaluación de Impacto Ambiental, ecorregiones de Argentina, derechos ambientales, juegos y recursos para docentes.">
+  <meta name="author" content="Jorge Lautaro Bustamante">
   <meta name="theme-color" content="#1b4332">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_AR">
@@ -101,6 +102,7 @@
         <a class="hub-card reveal" href="aprender.html#calidad"><span>🧪</span><strong>Calidad del aire y del agua</strong><small>Un semáforo con valores reales</small></a>
         <a class="hub-card reveal" href="medi.html#residuos"><span>🪱</span><strong>Residuos y compost</strong><small>Calculá tu basura y aprendé a compostar</small></a>
         <a class="hub-card reveal" href="docentes.html"><span>🍎</span><strong>Para docentes</strong><small>Secuencias y fichas imprimibles</small></a>
+        <a class="hub-card reveal" href="actua.html#caleta"><span>🌊</span><strong>Caleta Olivia</strong><small>Agua, reciclaje y naturaleza de mi ciudad</small></a>
       </div>
     </section>
 
@@ -121,6 +123,55 @@
           </div>
         </div>
       </div>
+
+      <div class="author panel reveal">
+        <div class="author-avatar" aria-hidden="true">JB</div>
+        <div class="author-info">
+          <span class="tag">Sobre mí</span>
+          <h3>Jorge Lautaro Bustamante</h3>
+          <p class="author-role">🎓 Estudiante de la Licenciatura en Gestión Ambiental · Universidad Siglo 21</p>
+          <p class="author-role">📍 Caleta Olivia, Santa Cruz, Argentina</p>
+          <p>Creé Planeta Verde para compartir lo que aprendo en la carrera de una forma simple, práctica e interactiva, con una mirada desde la Patagonia y el Golfo San Jorge.</p>
+          <div class="btn-row author-links">
+            <a class="btn btn-small" href="#contacto">✉️ Escribime</a>
+            <a class="btn btn-small btn-outline" href="actua.html#caleta">🌊 Caleta Olivia</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="tool" id="contacto">
+      <div class="tool-head reveal">
+        <span class="tag">Contacto</span>
+        <h2>¿Tenés una idea, una duda o una corrección?</h2>
+        <p>Escribime para proponer temas, avisar de un error o contar un problema ambiental de tu ciudad.</p>
+      </div>
+      <form class="contact panel reveal" id="contactForm">
+        <div class="audit-setup">
+          <label>Tu nombre
+            <input type="text" id="cName" maxlength="80" required autocomplete="name">
+          </label>
+          <label>Motivo
+            <select id="cTopic">
+              <option>Sugerencia de contenido</option>
+              <option>Corrección de un dato</option>
+              <option>Problema ambiental local</option>
+              <option>Uso en escuelas</option>
+              <option>Otro</option>
+            </select>
+          </label>
+        </div>
+        <label class="contact-msg">Mensaje
+          <textarea id="cMsg" rows="5" maxlength="2000" required></textarea>
+        </label>
+        <div class="btn-row">
+          <button type="submit" class="btn">✉️ Preparar correo</button>
+          <button type="button" class="btn btn-outline" id="cCopy">📋 Copiar mi dirección</button>
+        </div>
+        <p class="note">Al enviar se abre tu programa de correo con el mensaje listo. También podés escribir directamente a <a class="contact-mail" data-u="jlbustamante889" data-d="gmail.com" href="#contacto">[dirección de correo]</a>.</p>
+        <p class="modal-status" id="cStatus" aria-live="polite"></p>
+      </form>
     </section>
 
     <!-- LOGROS -->

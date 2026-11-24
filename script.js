@@ -708,3 +708,38 @@ watchReveal();
     </div>`).join('');
   watchReveal(datesEl);
 })();
+
+// =====================================================
+//  Contacto: arma el correo (la dirección se arma en el
+//  navegador para que sea más difícil de copiar por robots)
+// =====================================================
+(function () {
+  const links = $$('.contact-mail');
+  const form = $('#contactForm');
+  if (!links.length && !form) return;
+  const first = links[0];
+  const address = first ? `${first.dataset.u}@${first.dataset.d}` : '';
+  links.forEach((a) => { a.textContent = address; a.href = `mailto:${address}`; });
+  if (!form) return;
+  const status = $('#cStatus');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = $('#cName').value.trim();
+    const topic = $('#cTopic').value;
+    const msg = $('#cMsg').value.trim();
+    const subject = `Planeta Verde: ${topic}`;
+    const body = `${msg}\n\n— ${name}`;
+    window.location.href = `mailto:${address}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    status.textContent = `Si no se abrió tu correo, escribí a ${address} y pegá tu mensaje.`;
+  });
+
+  $('#cCopy').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(address);
+      status.textContent = '✅ Dirección copiada.';
+    } catch (err) {
+      status.textContent = `Copiala a mano: ${address}`;
+    }
+  });
+})();

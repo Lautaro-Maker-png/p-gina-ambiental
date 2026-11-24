@@ -43,6 +43,7 @@
       <a href="index.html#logros">Logros</a>
     </div>
     <p>🌍 <strong>Planeta Verde</strong> — Cuidar el ambiente es tarea de todos.</p>
+    <p class="small">Hecho por <a href="index.html#sobre">Jorge Lautaro Bustamante</a>, estudiante de Gestión Ambiental · Caleta Olivia, Santa Cruz · <a href="index.html#contacto">Contacto</a></p>
     <p class="small">Datos aproximados basados en informes de la ONU, IPCC, IPBES, FAO y Water Footprint Network. Las calculadoras dan estimaciones orientativas. La sección de derechos es de divulgación y no reemplaza el asesoramiento legal.</p>
     <button class="install-btn" id="installBtn" hidden>📲 Instalar Planeta Verde como app</button>`;
   document.body.appendChild(footer);
