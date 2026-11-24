@@ -13,7 +13,15 @@
     { id: 'game300', icon: '🚛', name: 'Maestro/a del reciclaje', desc: 'Hacé 300 puntos en el juego de reciclaje', pts: 50 },
     { id: 'eia1', icon: '🔍', name: 'Evaluador/a', desc: 'Completá una Evaluación de Impacto Ambiental', pts: 30 },
     { id: 'eiaPro', icon: '📋', name: 'Ojo experto', desc: 'Sacá 80 o más en una evaluación', pts: 40 },
-    { id: 'eiaAll', icon: '⚖️', name: 'Autoridad ambiental', desc: 'Evaluá los 4 proyectos', pts: 60 },
+    { id: 'eiaAll', icon: '⚖️', name: 'Autoridad ambiental', desc: 'Evaluá todos los proyectos', pts: 60 },
+    { id: 'eco', icon: '🗺️', name: 'Ecoviajero/a', desc: 'Explorá las 18 ecorregiones de Argentina', pts: 30 },
+    { id: 'web', icon: '🕸️', name: 'Efecto dominó', desc: 'Descubrí una extinción en cadena en la red alimentaria', pts: 20 },
+    { id: 'climate', icon: '🌡️', name: 'Futurista', desc: 'Explorá todos los escenarios de temperatura', pts: 20 },
+    { id: 'water', icon: '💧', name: 'Gota a gota', desc: 'Calculá tu huella hídrica', pts: 20 },
+    { id: 'audit', icon: '📝', name: 'Auditor/a', desc: 'Completá una auditoría ambiental', pts: 30 },
+    { id: 'glossary', icon: '📖', name: 'Vocabulario verde', desc: 'Abrí 10 términos del glosario', pts: 20 },
+    { id: 'reader', icon: '📰', name: 'Lector/a', desc: 'Leé un artículo del blog', pts: 10 },
+    { id: 'ranking', icon: '🥇', name: 'En el podio', desc: 'Sumate al ranking de la comunidad', pts: 20 },
     { id: 'rights', icon: '📜', name: 'Conozco mis derechos', desc: 'Leé las 10 leyes ambientales', pts: 40 },
     { id: 'habits', icon: '✅', name: 'Hábitos verdes', desc: 'Marcá 6 acciones en “¿Qué puedo hacer yo?”', pts: 20 },
     { id: 'week', icon: '📅', name: 'Semana verde', desc: 'Completá 7 días del desafío', pts: 30 },
@@ -23,10 +31,10 @@
 
   const LEVELS = [
     { min: 0, icon: '🌰', name: 'Semilla' },
-    { min: 50, icon: '🌱', name: 'Brote' },
-    { min: 150, icon: '🌿', name: 'Planta' },
-    { min: 300, icon: '🌳', name: 'Árbol' },
-    { min: 450, icon: '🌲', name: 'Bosque' },
+    { min: 60, icon: '🌱', name: 'Brote' },
+    { min: 200, icon: '🌿', name: 'Planta' },
+    { min: 400, icon: '🌳', name: 'Árbol' },
+    { min: 620, icon: '🌲', name: 'Bosque' },
   ];
 
   const load = (k, f) => {
@@ -72,6 +80,7 @@
       setTimeout(() => toast(`<span class="toast-icon">${after.icon}</span><div><small>¡Subiste de nivel!</small><strong>Ahora sos ${after.name}</strong></div>`), 700);
     }
     render();
+    document.dispatchEvent(new Event('pv-points'));
   }
 
   // ---------- Sección de logros ----------
@@ -108,7 +117,7 @@
   }
 
   // ---------- Explorador: visitar todas las secciones ----------
-  const SECTIONS = ['clima', 'reciclaje', 'biodiversidad', 'agua', 'calculadora', 'juego', 'quiz', 'eia', 'derechos', 'desafio', 'calendario', 'puntos'];
+  const SECTIONS = ['clima', 'simulador', 'reciclaje', 'biodiversidad', 'ecorregiones', 'cadena', 'agua', 'hidrica', 'calculadora', 'auditoria', 'juego', 'quiz', 'eia', 'derechos', 'glosario', 'desafio', 'calendario', 'puntos', 'blog'];
   let visited = new Set(load('pv-visited', []));
 
   const secObserver = new IntersectionObserver((entries) => {
@@ -222,6 +231,29 @@
     } catch (e) { return false; }
   }
 
+  // Descargar un archivo: primero con la capacidad de descargas de la página,
+  // si no está disponible, con un enlace común.
+  async function download(filename, data, type) {
+    try {
+      const dl = window.claude && window.claude.use ? await window.claude.use('downloads') : null;
+      if (dl) {
+        await dl.save({ filename, data });
+        return 'ok';
+      }
+    } catch (err) {
+      if (err && err.code === 'declined') return 'declined';
+    }
+    try {
+      const blob = data instanceof Blob ? data : new Blob([data], { type: type || 'text/plain' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = filename;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+      return 'ok';
+    } catch (err) { return 'error'; }
+  }
+
   async function share(data) {
     const m = ensureModal();
     const status = m.querySelector('.modal-status');
@@ -252,15 +284,11 @@
           if (err && err.name !== 'AbortError') status.textContent = 'No se pudo compartir desde acá. Probá descargar la imagen o copiar el texto.';
         }
       } else if (act === 'download') {
-        try {
-          const a = document.createElement('a');
-          a.href = url; a.download = 'planeta-verde.png';
-          document.body.appendChild(a); a.click(); a.remove();
-          status.textContent = '¡Listo! Si no se descargó, guardá la imagen manteniéndola presionada.';
-          unlock('share');
-        } catch (err) {
-          status.textContent = 'Guardá la imagen manteniéndola presionada o con clic derecho.';
-        }
+        const blob = await new Promise((r) => canvas.toBlob(r, 'image/png'));
+        const res = await download('planeta-verde.png', blob, 'image/png');
+        if (res === 'ok') { status.textContent = '¡Listo! Si no se descargó, guardá la imagen manteniéndola presionada.'; unlock('share'); }
+        else if (res === 'declined') status.textContent = 'Descarga cancelada.';
+        else status.textContent = 'Guardá la imagen manteniéndola presionada o con clic derecho.';
       } else if (act === 'copy') {
         const ok = await copyText(data.text);
         status.textContent = ok ? '¡Texto copiado! Pegalo en tus redes 😉' : 'No se pudo copiar el texto.';
@@ -284,5 +312,13 @@
 
   render();
 
-  window.PV = { unlock, share, isUnlocked: (id) => !!unlocked[id] };
+  window.PV = {
+    unlock, share, download, render,
+    isUnlocked: (id) => !!unlocked[id],
+    points,
+    level: () => levelFor(points()).cur,
+    badgeCount: () => BADGES.filter((b) => unlocked[b.id]).length,
+    badgeTotal: BADGES.length,
+  };
+  document.dispatchEvent(new Event('pv-ready'));
 })();
