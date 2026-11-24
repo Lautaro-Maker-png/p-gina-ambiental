@@ -120,12 +120,15 @@ const facts = [
 ];
 
 let factIndex = 0;
+let factsSeen = 0;
 const factText = $('#factText');
 
 $('#factBtn').addEventListener('click', () => {
   let next;
   do { next = Math.floor(Math.random() * facts.length); } while (next === factIndex);
   factIndex = next;
+  factsSeen++;
+  if (factsSeen >= 5) PV.unlock('curious');
   factText.classList.add('fade');
   setTimeout(() => {
     factText.textContent = facts[factIndex];
@@ -283,9 +286,17 @@ function showCalcResult(total, parts) {
       <ul>${sorted.slice(0, 3).map((p) => `<li>${tipsByCat[p.cat]}</li>`).join('')}</ul>
     </div>
     <p class="note">Estimación orientativa con valores promedio. Una huella real depende de muchos más factores.</p>
-    <div class="center"><button class="btn btn-outline btn-small" id="calcAgain">Volver a calcular</button></div>`;
+    <div class="center btn-row"><button type="button" class="btn btn-small" id="calcShare">📤 Compartir mi resultado</button><button type="button" class="btn btn-outline btn-small" id="calcAgain">Volver a calcular</button></div>`;
 
   calcResult.hidden = false;
+  PV.unlock('calc');
+  $('#calcShare').addEventListener('click', () => PV.share({
+    emoji: total <= TARGET ? '🌟' : total <= WORLD_AVG ? '🌿' : '🌍',
+    title: 'Mi huella de carbono es de',
+    value: `${fmt(total)} t`,
+    subtitle: `de CO₂ por año. El promedio mundial es de ${fmt(WORLD_AVG)} t.`,
+    text: `🌍 Calculé mi huella de carbono en Planeta Verde: ${fmt(total)} toneladas de CO₂ por año (el promedio mundial es ${fmt(WORLD_AVG)} t). ¿Cuál es la tuya? 🌱`,
+  }));
   requestAnimationFrame(() =>
     requestAnimationFrame(() => $$('.cbar-fill', calcResult).forEach((b) => (b.style.width = b.dataset.w + '%')))
   );
@@ -380,6 +391,10 @@ function endGame() {
   gFeedback.textContent = record ? '¡Nuevo récord!' : '';
   gStart.textContent = 'Jugar de nuevo';
   gStart.hidden = false;
+  gShare.hidden = false;
+  lastGameScore = game.score;
+  if (game.score >= 150) PV.unlock('game150');
+  if (game.score >= 300) PV.unlock('game300');
 }
 
 gBins.forEach((btn) =>
@@ -399,7 +414,21 @@ gBins.forEach((btn) =>
   })
 );
 
-gStart.addEventListener('click', startGame);
+gStart.addEventListener('click', () => { gShare.hidden = true; startGame(); });
+
+const gShare = document.createElement('button');
+gShare.className = 'btn btn-outline btn-small';
+gShare.textContent = '📤 Compartir puntaje';
+gShare.hidden = true;
+gStart.after(gShare);
+let lastGameScore = 0;
+gShare.addEventListener('click', () => PV.share({
+  emoji: '♻️',
+  title: 'En el juego de reciclaje hice',
+  value: `${lastGameScore} pts`,
+  subtitle: '¿Sabés en qué contenedor va cada residuo? Probá superarme.',
+  text: `♻️ Hice ${lastGameScore} puntos en el juego de reciclaje de Planeta Verde. ¿Me superás? 🌱`,
+}));
 
 // =====================================================
 //  Quiz
@@ -516,9 +545,18 @@ function showQuizEnd() {
       <p>Tu resultado</p>
       <div class="big">${s} / ${n}</div>
       <p class="result-msg">${msg}</p>
-      <div class="center"><button class="btn" id="quizRestart">Jugar otra vez</button></div>
+      <div class="center btn-row"><button class="btn" id="quizRestart">Jugar otra vez</button><button class="btn btn-outline" id="quizShare">📤 Compartir</button></div>
     </div>`;
   $('#quizRestart').addEventListener('click', startQuiz);
+  $('#quizShare').addEventListener('click', () => PV.share({
+    emoji: s === n ? '🏆' : '🧠',
+    title: 'En el quiz ambiental saqué',
+    value: `${s}/${n}`,
+    subtitle: msg.replace(/\s\S+$/u, ''),
+    text: `🧠 Saqué ${s}/${n} en el quiz ambiental de Planeta Verde. ¿Cuánto sabés vos del ambiente? 🌱`,
+  }));
+  if (s >= 7) PV.unlock('quiz7');
+  if (s === n) PV.unlock('quiz10');
 }
 
 startQuiz();
@@ -547,6 +585,7 @@ function updateActions() {
   const level = [...levels].reverse().find((l) => done >= l.min);
   actionsText.textContent = done ? `${done}/${checks.length} — ${level.msg}` : level.msg;
   store.set('pv-actions', checks.map((c) => c.checked));
+  if (done >= 6) PV.unlock('habits');
 }
 
 checks.forEach((c) => c.addEventListener('change', updateActions));
@@ -604,6 +643,8 @@ function renderChallenge() {
 
 function updateChallengeProgress() {
   const n = chDone.filter(Boolean).length;
+  if (n >= 7) PV.unlock('week');
+  if (n === challenge.length) PV.unlock('planet');
   chBar.style.width = `${(n / challenge.length) * 100}%`;
   chText.textContent = n === challenge.length
     ? '🏆 ¡Completaste el desafío de 30 días! Sos un ejemplo para el planeta.'
